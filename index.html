@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Savannah Seeds — Sava 7501 Hybrid Paddy | Create Your Branded Farmer Video</title>
+    <meta name="description" content="Savannah Seeds Sava 7501 Smart Rice — Hybrid Paddy. Create your branded farmer video and explore premium seed products.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/Logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="header-inner">
+                <img src="assets/Logo.png" alt="Savannah Seeds" class="header-logo" id="header-logo">
+                <button id="lang-toggle" class="lang-toggle" aria-label="Toggle Language" title="Switch Language">
+                    <img src="assets/Translate icon.svg" alt="Translate" width="24" height="24">
+                </button>
+            </div>
+            <div class="header-wave">
+                <svg viewBox="0 0 400 40" preserveAspectRatio="none">
+                    <!-- White background fill -->
+                    <path d="M 0,0 L 400,0 L 400,30 C 280,40 120,0 0,15 Z" fill="#ffffff"/>
+                    <!-- Green wave border -->
+                    <path d="M 0,15 C 120,0 280,40 400,30" fill="none" stroke="#194E44" stroke-width="4"/>
+                </svg>
+            </div>
+        </header>
+
+        <!-- Language Selector Modal -->
+        <div id="lang-modal" class="lang-modal hidden">
+            <div class="lang-modal-backdrop"></div>
+            <div class="lang-modal-content">
+                <h3>Select Language</h3>
+                <button class="lang-option active" data-lang="en">English</button>
+                <button class="lang-option" data-lang="hi">हिन्दी (Hindi)</button>
+                <button class="lang-option" data-lang="pa">ਪੰਜਾਬੀ (Punjabi)</button>
+            </div>
+        </div>
+
+        <!-- Pages Container -->
+        <main id="pages" class="pages">
+            <!-- ===== HOME PAGE ===== -->
+            <section id="page-home" class="page active" style="padding-top: 0; background: white;">
+                <!-- Top Section (Green) -->
+                <div class="home-top-section">
+                    <!-- The image/video carousel -->
+                    <div class="home-hero-img-container">
+                        <div class="banner-carousel" id="home-banner-carousel">
+                            <div class="banner-slide">
+                                <!-- User Provided Video Slide -->
+                                <video autoplay loop muted playsinline class="hero-banner-video">
+                                    <source src="assets/banner_video.mp4" type="video/mp4">
+                                </video>
+                                <img src="assets/Sava 7501 Pack 2.png" class="floating-packshot" alt="Savannah Packshot">
+                            </div>
+                            <div class="banner-slide">
+                                <img src="assets/Savannah_Banner03_Product 3.png" alt="Savannah Banner 1" class="hero-banner-img">
+                            </div>
+                        </div>
+
+                        <!-- Concave wave at the bottom of the image transitioning to the green background -->
+                        <div class="img-bottom-wave">
+                            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                                <path d="M0,0 C400,120 1040,120 1440,0 L1440,120 L0,120 Z" fill="var(--color-primary)"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="home-top-content">
+                        <!-- White Card -->
+                        <div class="home-card-white" id="feature-brand">
+                            <div class="video-placeholder"></div>
+                        </div>
+                        <h2 class="home-cta-text white-text" data-i18n="createVideo">Create your branded farmer video</h2>
+                    </div>
+                </div>
+
+                <!-- Bottom Section (White) -->
+                <div class="home-bottom-section">
+                    <h2 class="home-cta-text green-text" data-i18n="createVideo">Create your branded farmer video</h2>
+                    <!-- Green Card -->
+                    <div class="home-card-green" id="feature-record">
+                        <div class="video-placeholder"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== RECORD PAGE ===== -->
+            <section id="page-record" class="page">
+                <!-- Step 0: Camera Permission -->
+                <div id="record-step-permission" class="record-step active">
+                    <div class="permission-content">
+                        <div class="permission-icon">
+                            <div class="permission-circle">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <h2 class="permission-title" data-i18n="allowCamera">Allow Camera Access</h2>
+                        <p class="permission-desc" data-i18n="cameraDesc">Savannah Seeds needs access to your camera and microphone to record your farmer story.</p>
+                        <button id="btn-allow-camera" class="btn-primary" data-i18n="allowAccess">ALLOW ACCESS</button>
+                        <button id="btn-not-now" class="btn-secondary" data-i18n="notNow">NOT NOW</button>
+                        <p class="privacy-note" data-i18n="privacyNote">Your video is private and will only be shared with your consent.</p>
+                    </div>
+                </div>
+
+                <!-- Step 1: Recording View -->
+                <div id="record-step-camera" class="record-step">
+                    <div class="camera-view">
+                        <video id="camera-preview" autoplay playsinline muted></video>
+                        <div class="body-guide">
+                            <svg viewBox="0 0 300 500" class="body-outline">
+                                <!-- Outer rounded rectangle -->
+                                <rect x="30" y="20" width="240" height="460" rx="120" ry="120" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                                <!-- Head circle -->
+                                <circle cx="150" cy="140" r="45" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                                <!-- Body outline -->
+                                <rect x="80" y="200" width="140" height="240" rx="20" ry="20" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                                <text x="150" y="460" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="14" font-family="Inter">INSIDE LINE</text>
+                            </svg>
+                        </div>
+                        <div class="camera-controls">
+
+                            <button id="btn-record" class="record-btn" aria-label="Start Recording">
+                                <div class="record-btn-inner"></div>
+                            </button>
+
+                        </div>
+                        <div id="recording-timer" class="recording-timer hidden">
+                            <div class="rec-dot"></div>
+                            <span id="timer-display">00:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Processing -->
+                <div id="record-step-processing" class="record-step">
+                    <div class="processing-content">
+                        <div class="processing-logo">
+                            <img src="assets/Logo.png" alt="Savannah" class="processing-logo-img pulse-animation">
+                        </div>
+                        <p class="processing-text" data-i18n="processingText">Please wait. Keep this screen open.</p>
+                        <div class="processing-bar">
+                            <div class="processing-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Preview / Brand Jacketed Result -->
+                <div id="record-step-preview" class="record-step">
+                    <div class="preview-content">
+                        <div class="preview-video-container" id="preview-video-container">
+                            <!-- Canvas for brand-jacketed video will be inserted here -->
+                            <video id="preview-video" controls></video>
+                        </div>
+                        <div class="preview-actions">
+                            <button id="btn-download" class="btn-secondary" data-i18n="downloadVideo">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                DOWNLOAD MP4
+                            </button>
+                            <button id="btn-record-again" class="btn-secondary" data-i18n="recordAgain">RECORD AGAIN</button>
+                            <button id="btn-back-home" class="btn-primary" data-i18n="backToHome">Back to Home</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PRODUCT PAGE ===== -->
+            <section id="page-product" class="page">
+                <div class="product-content">
+                    <div class="product-image-container">
+                        <div class="product-image-bg">
+                            <img src="assets/Sava 7501 Pack 2.png" alt="Sava 7501 Hybrid Paddy" class="product-image" id="product-main-image">
+                        </div>
+                    </div>
+
+                    <div class="product-details">
+                        <h1 class="product-name" id="product-name" data-i18n="productName">Sava 7501 — Hybrid Paddy</h1>
+                        <div class="product-divider"></div>
+                        <p class="product-desc" id="product-desc" data-i18n="productDesc">Sava 7501 is a premium hybrid paddy seed by Savannah Seeds, engineered for superior yield, disease resistance, and adaptability across diverse agro-climatic conditions. Ideal for farmers seeking consistent, high-quality harvests.</p>
+                        <a href="#" class="read-more" data-i18n="readMore">Read more...</a>
+
+                        <!-- Accordion Sections -->
+                        <div class="accordion" id="accordion-features">
+                            <button class="accordion-header" id="acc-features-btn">
+                                <span data-i18n="keyFeatures">KEY FEATURES</span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body" id="acc-features-body">
+                                <ul>
+                                    <li data-i18n="feature1">High yield potential with excellent grain quality</li>
+                                    <li data-i18n="feature2">Strong resistance to major diseases</li>
+                                    <li data-i18n="feature3">Adaptable across diverse agro-climatic zones</li>
+                                    <li data-i18n="feature4">Medium-duration variety (120–130 days)</li>
+                                    <li data-i18n="feature5">Net Weight: 3 Kg per pack</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion" id="accordion-ingredients">
+                            <button class="accordion-header" id="acc-ingredients-btn">
+                                <span data-i18n="ingredients">INGREDIENTS</span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body" id="acc-ingredients-body">
+                                <ul>
+                                    <li data-i18n="ing1">Certified F1 Hybrid Rice Seed</li>
+                                    <li data-i18n="ing2">Treated with Thiram fungicide for seed protection</li>
+                                    <li data-i18n="ing3">Germination rate: &gt;90%</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion" id="accordion-howto">
+                            <button class="accordion-header" id="acc-howto-btn">
+                                <span data-i18n="howToUse">HOW TO USE</span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body" id="acc-howto-body">
+                                <p data-i18n="howToUseDesc">Prepare a well-puddled nursery bed. Sow seeds at 15–20 kg/ha rate. Transplant 20–25 day old seedlings at 20×15 cm spacing. Maintain proper water management and apply recommended fertilizers for best results.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature Icons -->
+                        <div class="product-badges">
+                            <div class="badge-item">
+                                <div class="badge-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <polyline points="9 12 11 14 15 10"></polyline>
+                                    </svg>
+                                </div>
+                                <span data-i18n="badgeSafe">100% Safe</span>
+                            </div>
+                            <div class="badge-item">
+                                <div class="badge-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                    </svg>
+                                </div>
+                                <span data-i18n="badgeFarmer">Farmer Friendly</span>
+                            </div>
+                            <div class="badge-item">
+                                <div class="badge-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span data-i18n="badgeEasy">Easy to Grow</span>
+                            </div>
+                            <div class="badge-item">
+                                <div class="badge-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                    </svg>
+                                </div>
+                                <span data-i18n="badgeNoChemical">No Harsh Chemicals</span>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Section -->
+                        <h2 class="faq-title" data-i18n="wantToKnow">Want to know more?</h2>
+
+                        <div class="accordion faq-accordion" id="faq-1">
+                            <button class="accordion-header faq-header" id="faq-1-btn">
+                                <span><strong>01.</strong> <span data-i18n="faq1q">Is it safe?</span></span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body" id="faq-1-body">
+                                <p data-i18n="faq1a">Yes, Sava 7501 is a completely safe and certified product. All seeds are tested and approved under stringent quality standards.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion faq-accordion" id="faq-2">
+                            <button class="accordion-header faq-header" id="faq-2-btn">
+                                <span><strong>02.</strong> <span data-i18n="faq2q">What is the ideal planting season?</span></span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body" id="faq-2-body">
+                                <p data-i18n="faq2a">Sava 7501 is best planted during the Kharif season (June–July). It performs well in both irrigated and rain-fed conditions.</p>
+                            </div>
+                        </div>
+
+                        <!-- Subscribe Section -->
+                        <div class="subscribe-section" id="subscribe-section">
+                            <h3 class="subscribe-title" data-i18n="stayConnected">Stay Connected, Stay Informed</h3>
+                            <p class="subscribe-desc" data-i18n="subscribeDesc">Subscribe to receive exclusive updates, tips, and promotions straight to your inbox. Join our community for expert advice and resources to support your farming journey.</p>
+                            <div class="subscribe-form">
+                                <input type="email" id="subscribe-email" placeholder="Enter your email address" class="subscribe-input" data-i18n-placeholder="emailPlaceholder">
+                                <button id="subscribe-btn" class="subscribe-btn" aria-label="Subscribe">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== NOTICE BOARD PAGE ===== -->
+            <section id="page-notice" class="page">
+                <div class="notice-content">
+                    <div class="notice-header">
+                        <div class="notice-icon">🎉</div>
+                        <h2 data-i18n="noticeTitle">Lucky Draw Winners</h2>
+                        <p data-i18n="noticeSubtitle">Weekly Announcements</p>
+                    </div>
+                    
+                    <div class="notice-board">
+                        <div class="notice-card highlight">
+                            <div class="notice-date">Week 4 - Oct 2026</div>
+                            <div class="notice-winner">
+                                <div class="winner-avatar">🏆</div>
+                                <div class="winner-info">
+                                    <h3>Gurpreet Singh</h3>
+                                    <p>Ludhiana, Punjab</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="notice-card">
+                            <div class="notice-date">Week 3 - Oct 2026</div>
+                            <div class="notice-winner">
+                                <div class="winner-avatar">✨</div>
+                                <div class="winner-info">
+                                    <h3>Rajesh Kumar</h3>
+                                    <p>Karnal, Haryana</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="notice-card">
+                            <div class="notice-date">Week 2 - Sep 2026</div>
+                            <div class="notice-winner">
+                                <div class="winner-avatar">✨</div>
+                                <div class="winner-info">
+                                    <h3>Amandeep Kaur</h3>
+                                    <p>Patiala, Punjab</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Floating Badge Button -->
+        <button id="badge-btn" class="badge-floating-btn" aria-label="Savannah Badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+        </button>
+
+        <!-- Bottom Navigation -->
+        <nav id="bottom-nav" class="bottom-nav">
+            <div class="nav-pill">
+                <button id="nav-home" class="nav-item active" data-page="home" aria-label="Home">
+                    <div class="nav-icon-wrapper active-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                        </svg>
+                    </div>
+                    <span class="nav-label">HOME</span>
+                </button>
+                <button id="nav-record" class="nav-item" data-page="record" aria-label="Record">
+                    <div class="nav-icon-wrapper">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                    </div>
+                    <span class="nav-label">RECORD</span>
+                </button>
+                <button id="nav-product" class="nav-item" data-page="product" aria-label="Product">
+                    <div class="nav-icon-wrapper">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </div>
+                    <span class="nav-label">PRODUCT</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/mp4-muxer@5.1.3/build/mp4-muxer.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
