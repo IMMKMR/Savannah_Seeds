@@ -12,6 +12,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-inner">
+            <img src="assets/Logo.png" alt="Savannah Seeds" class="splash-logo">
+            <div class="splash-tagline">Smart Rice • Smart Farmer</div>
+            <div class="splash-loader">
+                <div class="splash-loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
     <div id="app" class="app-container">
         <!-- Header -->
         <header id="header" class="header">
@@ -57,9 +68,11 @@
                                     <source src="assets/banner_video.mp4" type="video/mp4">
                                 </video>
                                 <img src="assets/Sava 7501 Pack 2.png" class="floating-packshot" alt="Savannah Packshot">
+                                <div class="banner-text-overlay">क्षमता पूरी, उपज भरपूर।</div>
                             </div>
                             <div class="banner-slide">
                                 <img src="assets/Savannah_Banner03_Product 3.png" alt="Savannah Banner 1" class="hero-banner-img">
+                                <div class="banner-text-overlay">क्षमता पूरी, उपज भरपूर।</div>
                             </div>
                         </div>
 
@@ -72,9 +85,23 @@
                     </div>
 
                     <div class="home-top-content">
-                        <!-- White Card -->
+                        <!-- White Card — Record CTA -->
                         <div class="home-card-white" id="feature-brand">
-                            <div class="video-placeholder"></div>
+                            <div class="card-inner">
+                                <div class="card-icon-circle">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                        <circle cx="12" cy="13" r="4"></circle>
+                                    </svg>
+                                </div>
+                                <div class="card-text">
+                                    <h3 data-i18n="recordStory">Record Your Story</h3>
+                                    <p>Tap to start recording</p>
+                                </div>
+                                <div class="card-arrow">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
                         </div>
                         <h2 class="home-cta-text white-text" data-i18n="createVideo">Create your branded farmer video</h2>
                     </div>
@@ -82,10 +109,24 @@
 
                 <!-- Bottom Section (White) -->
                 <div class="home-bottom-section">
-                    <h2 class="home-cta-text green-text" data-i18n="createVideo">Create your branded farmer video</h2>
-                    <!-- Green Card -->
+                    <h2 class="home-cta-text green-text" data-i18n="exploreProduct">Explore Our Products</h2>
+                    <!-- Green Card — Product CTA -->
                     <div class="home-card-green" id="feature-record">
-                        <div class="video-placeholder"></div>
+                        <div class="card-inner">
+                            <div class="card-icon-circle green-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <polyline points="9 12 11 14 15 10"></polyline>
+                                </svg>
+                            </div>
+                            <div class="card-text green-card-text">
+                                <h3 data-i18n="productCTA">Sava 7501 — Hybrid Paddy</h3>
+                                <p>View details & features</p>
+                            </div>
+                            <div class="card-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -403,6 +444,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/mp4-muxer@5.1.3/build/mp4-muxer.min.js"></script>
+    <script src="assets/jackets-base64.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

@@ -156,6 +156,16 @@ const $$ = (sel) => document.querySelectorAll(sel);
 
 // ── Initialization ──
 document.addEventListener('DOMContentLoaded', () => {
+    // Dismiss splash screen after loader finishes
+    const splash = document.getElementById('splash-screen');
+    if (splash) {
+        setTimeout(() => {
+            splash.classList.add('hidden');
+            // Remove from DOM after transition
+            setTimeout(() => splash.remove(), 600);
+        }, 1800);
+    }
+
     initNavigation();
     initLanguage();
     initAccordions();
@@ -209,7 +219,7 @@ function initNavigation() {
     });
 
     // Feature cards click to navigate
-    $('#feature-record')?.addEventListener('click', () => navigateTo('record'));
+    $('#feature-record')?.addEventListener('click', () => navigateTo('product'));
     $('#feature-brand')?.addEventListener('click', () => navigateTo('record'));
     $('#feature-share')?.addEventListener('click', () => navigateTo('record'));
 
@@ -511,66 +521,97 @@ function showBrandJacketedPreview() {
     // Clear previous content
     container.innerHTML = '';
 
-    // Determine which jacket to use based on language
-    const jacketSrc = state.selectedJacket === 'punjabi' ? 'assets/Punjabi.jpeg' : 'assets/Hindi.jpeg';
+    // Determine which jacket to use based on language (from Data URIs to prevent tainting)
+    const jacketSrc = state.selectedJacket === 'punjabi' ? JACKETS_BASE64.punjabi : JACKETS_BASE64.hindi;
 
     // Create brand-jacketed layout
     const wrapper = document.createElement('div');
     wrapper.className = 'jacket-preview-container';
-    wrapper.style.cssText = 'position:relative;width:100%;height:100%;overflow:hidden;background:#000;';
+    wrapper.style.cssText = 'position:relative;width:100%;height:100%;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;';
 
     // Video element (positioned in the green screen area)
     const video = document.createElement('video');
     video.id = 'preview-video';
-    video.controls = true;
+    video.controls = false; // We'll handle playback manually
     video.playsInline = true;
-    video.autoplay = true;
     video.loop = true;
     video.src = URL.createObjectURL(state.recordedBlob);
 
     // We'll use a canvas-based approach for the brand jacketing
     const canvas = document.createElement('canvas');
     canvas.id = 'brand-jacket-canvas';
-    canvas.style.cssText = 'width:100%;height:100%;display:block;';
+    canvas.style.cssText = 'max-width:100%;max-height:100%;display:block;cursor:pointer;';
 
-    // Load the jacket image
+    const playOverlay = document.createElement('div');
+    playOverlay.innerHTML = `
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+    `;
+    playOverlay.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.5);border-radius:50%;padding:16px;pointer-events:none;display:flex;transition:opacity 0.2s;';
+
+    // Load the jacket image as Data URI
     const jacketImg = new Image();
-    jacketImg.crossOrigin = 'anonymous';
-    jacketImg.src = jacketSrc;
+    let jacketLoaded = false;
+    let videoLoaded = false;
+
+    function tryInitialRender() {
+        if (jacketLoaded && videoLoaded) {
+            try {
+                renderBrandJacketFrame(canvas, video, jacketImg);
+            } catch(e) {
+                console.error("Initial render failed:", e);
+            }
+        }
+    }
 
     jacketImg.onload = () => {
-        // Set canvas to jacket aspect ratio (9:16 portrait)
         canvas.width = jacketImg.naturalWidth;
         canvas.height = jacketImg.naturalHeight;
-
-        video.addEventListener('loadeddata', () => {
-            renderBrandJacketFrame(canvas, video, jacketImg);
-        });
-
-        video.addEventListener('play', () => {
-            function drawLoop() {
-                if (!video.paused && !video.ended) {
-                    renderBrandJacketFrame(canvas, video, jacketImg);
-                    requestAnimationFrame(drawLoop);
-                }
-            }
-            drawLoop();
-        });
-
-        // Add click handler to play/pause
-        canvas.addEventListener('click', () => {
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
+        jacketLoaded = true;
+        tryInitialRender();
     };
+    jacketImg.onerror = (e) => console.error("Failed to load jacket image", e);
+    jacketImg.src = jacketSrc;
+
+    video.addEventListener('loadeddata', () => {
+        videoLoaded = true;
+        tryInitialRender();
+    });
+
+    video.addEventListener('play', () => {
+        playOverlay.style.opacity = '0';
+        function drawLoop() {
+            if (!video.paused && !video.ended) {
+                try {
+                    renderBrandJacketFrame(canvas, video, jacketImg);
+                } catch(e) {
+                    console.error("Frame render failed:", e);
+                }
+                requestAnimationFrame(drawLoop);
+            }
+        }
+        drawLoop();
+    });
+
+    video.addEventListener('pause', () => {
+        playOverlay.style.opacity = '1';
+    });
+
+    // Add click handler to play/pause
+    canvas.addEventListener('click', () => {
+        if (video.paused) {
+            video.play().catch(e => console.error("Playback failed:", e));
+        } else {
+            video.pause();
+        }
+    });
 
     // Hide the raw video, show canvas
     video.style.display = 'none';
     wrapper.appendChild(video);
     wrapper.appendChild(canvas);
+    wrapper.appendChild(playOverlay);
     container.appendChild(wrapper);
 
     // Add jacket selector below
@@ -685,7 +726,6 @@ function waitForSeek(video) {
 function loadImageAsync(src) {
     return new Promise((resolve, reject) => {
         const img = new Image();
-        img.crossOrigin = 'anonymous';
         img.onload = () => resolve(img);
         img.onerror = reject;
         img.src = src;
@@ -736,8 +776,8 @@ async function downloadBrandJacketedVideo() {
     setDownloadButtonState('Preparing...', true);
 
     try {
-        // 1. Load jacket image
-        const jacketSrc = state.selectedJacket === 'punjabi' ? 'assets/Punjabi.jpeg' : 'assets/Hindi.jpeg';
+        // 1. Load jacket image from Data URI
+        const jacketSrc = state.selectedJacket === 'punjabi' ? JACKETS_BASE64.punjabi : JACKETS_BASE64.hindi;
         const jacketImg = await loadImageAsync(jacketSrc);
 
         // 2. Create an offscreen canvas matching jacket dimensions
@@ -851,13 +891,23 @@ async function downloadBrandJacketedVideo() {
             error: (e) => console.error('VideoEncoder error:', e),
         });
 
-        videoEncoder.configure({
+        const codecConfig = {
             codec: 'avc1.42001f', // H.264 Baseline Profile
             width: ew,
             height: eh,
             bitrate: 2_500_000,
             framerate: fps,
-        });
+        };
+
+        // Check if the codec is supported before configuring
+        if (typeof VideoEncoder.isConfigSupported === 'function') {
+            const support = await VideoEncoder.isConfigSupported(codecConfig);
+            if (!support.supported) {
+                throw new Error('H.264 encoding is not supported by this browser. Please use Chrome 94+ on desktop.');
+            }
+        }
+
+        videoEncoder.configure(codecConfig);
 
         // 6. Encode video frames by seeking through the source video
         for (let i = 0; i < totalFrames; i++) {
@@ -972,9 +1022,12 @@ async function downloadBrandJacketedVideo() {
 
     } catch (err) {
         console.error('MP4 export failed:', err);
+        const errMsg = err?.message || err?.toString?.() || 'Unknown error';
         // Fallback: download raw recording
-        downloadBlob(state.recordedBlob, `Savannah-Farmer-Video-${Date.now()}.webm`);
-        alert('MP4 export encountered an error. Downloaded as WebM instead.\n\nError: ' + err.message);
+        if (state.recordedBlob) {
+            downloadBlob(state.recordedBlob, `Savannah-Farmer-Video-${Date.now()}.webm`);
+        }
+        alert('MP4 export encountered an error. Downloaded as WebM instead.\n\nError: ' + errMsg);
     } finally {
         setDownloadButtonState('DOWNLOAD MP4', false);
     }
