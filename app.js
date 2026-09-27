@@ -61,6 +61,41 @@ const translations = {
         subscribeDesc: 'Subscribe to receive exclusive updates, tips, and promotions straight to your inbox. Join our community for expert advice and resources to support your farming journey.',
         emailPlaceholder: 'Enter your email address',
         selectJacket: 'Select Brand Jacket:',
+        navHome: 'HOME',
+        navRecord: 'RECORD',
+        navProduct: 'PRODUCT',
+        contestTitle: 'Show your crop, win a prize!',
+        contestStep1: 'Make a video with your crop',
+        contestStep2: 'Share it on Facebook',
+        contestStep3: 'Follow our Facebook page',
+        recordVideoBtn: 'Make a Video',
+        videoTutorial: 'How to Record Video',
+        videoTutorialLabel: 'Tutorial: How to Record Your Story',
+        testimonialsTitle: 'Farmer Stories & Videos',
+        testimonialsSubtitle: 'Real video experiences from Sava 7501 growers',
+        watchStory: 'Watch Video',
+        termsHeading: 'Terms & Conditions',
+        campaignTitle: 'Campaign: Show crop, win prize!',
+        hl1Title: '1. Make a video',
+        hl1Desc: 'Short video with your crop',
+        hl2Title: '2. Share on FB',
+        hl2Desc: '#FasalDikhaoInaamPao',
+        hl3Title: '3. Lucky Draw',
+        hl3Desc: 'Selection from Eligible Entries',
+        termsAccordionTitle: 'Terms & Conditions (10 Official Rules)',
+        rule1: 'To participate, create a short video with your crop.',
+        rule2: 'Share the video on your Facebook Profile/Page using #FasalDikhaoInaamPao.',
+        rule3: 'Follow the official Savannah Seeds Facebook Page.',
+        rule4: 'Multiple entries are allowed, but only valid entries will be considered.',
+        rule5: 'Winners will be selected via Lucky Draw from eligible entries.',
+        rule6: 'Prizes will be distributed after verifying participant details.',
+        rule7: 'Winners will be contacted via Facebook or Phone.',
+        rule8: 'Prizes are subject to verification.',
+        rule9: 'By participating, you allow Savannah Seeds to use your video for campaign communication.',
+        rule10: 'Participation implies agreement with these Terms & Conditions.',
+        disclaimerFooter: 'Savannah Seeds India Pvt. Ltd. • All Rights Reserved',
+        shareFacebook: 'Share on Facebook',
+        shareInstagram: 'Share on Instagram',
     },
     hi: {
         createVideo: 'अपना ब्रांडेड किसान वीडियो बनाएं',
@@ -104,6 +139,41 @@ const translations = {
         subscribeDesc: 'विशेष अपडेट, टिप्स और प्रमोशन प्राप्त करने के लिए सब्सक्राइब करें।',
         emailPlaceholder: 'अपना ईमेल पता दर्ज करें',
         selectJacket: 'ब्रांड जैकेट चुनें:',
+        navHome: 'होम',
+        navRecord: 'रिकॉर्ड',
+        navProduct: 'उत्पाद',
+        contestTitle: 'अपनी फसल दिखाएं, इनाम जीतें!',
+        contestStep1: 'अपनी फसल के साथ एक वीडियो बनाएं',
+        contestStep2: 'इसे Facebook पर शेयर करें',
+        contestStep3: 'हमारे Facebook पेज को फॉलो करें',
+        recordVideoBtn: 'वीडियो बनाएं',
+        videoTutorial: 'वीडियो कैसे रिकॉर्ड करें',
+        videoTutorialLabel: 'ट्यूटोरियल: अपनी कहानी कैसे रिकॉर्ड करें',
+        testimonialsTitle: 'किसान की कहानियाँ और वीडियो',
+        testimonialsSubtitle: 'सवा 7501 उगाने वालों के वास्तविक वीडियो अनुभव',
+        watchStory: 'वीडियो देखें',
+        termsHeading: 'नियम और शर्तें',
+        campaignTitle: 'Campaign: फसल दिखाओ, इनाम पाओ!',
+        hl1Title: '1. वीडियो बनाएं',
+        hl1Desc: 'फसल के साथ छोटा वीडियो',
+        hl2Title: '2. FB पर शेयर',
+        hl2Desc: '#FasalDikhaoInaamPao',
+        hl3Title: '3. Lucky Draw',
+        hl3Desc: 'Eligible Entries में से चयन',
+        termsAccordionTitle: 'Terms & Conditions (10 Official Rules)',
+        rule1: 'प्रतिभागी अपनी फसल के साथ एक छोटा वीडियो रिकॉर्ड करें।',
+        rule2: 'वीडियो को अपने Facebook Profile/Page पर #FasalDikhaoInaamPao के साथ पोस्ट करें।',
+        rule3: 'Savannah Seeds के Facebook Page को Follow करें।',
+        rule4: 'एक किसान एकाधिक बार Campaign में भाग ले सकता है, लेकिन Valid Entries ही लकी ड्रॉ के लिए मानी जाएंगी।',
+        rule5: 'सभी Eligible Entries में से Winners का चयन Lucky Draw के माध्यम से किया जाएगा।',
+        rule6: 'Winner घोषित होने पर, एंट्री और Participant Details Verify होने के बाद इनाम दिया जाएगा।',
+        rule7: 'Winners को Facebook / Phone के माध्यम से संपर्क किया जाएगा।',
+        rule8: 'Verification के बाद Prize प्रदान किया जाएगा।',
+        rule9: 'Winner के Photos/Videos को उनकी सहमति से Campaign Communication में उपयोग किया जा सकता है।',
+        rule10: 'Campaign में भाग लेने का अर्थ है कि प्रतिभागी इन Terms & Conditions से सहमत है।',
+        disclaimerFooter: 'Savannah Seeds India Pvt. Ltd. • सर्वाधिकार सुरक्षित',
+        shareFacebook: 'Facebook पर शेयर करें',
+        shareInstagram: 'Instagram पर शेयर करें',
     },
     pa: {
         createVideo: 'ਆਪਣਾ ਬ੍ਰਾਂਡਿਡ ਕਿਸਾਨ ਵੀਡੀਓ ਬਣਾਓ',
@@ -147,6 +217,41 @@ const translations = {
         subscribeDesc: 'ਵਿਸ਼ੇਸ਼ ਅੱਪਡੇਟ, ਟਿਪਸ ਅਤੇ ਪ੍ਰਮੋਸ਼ਨ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ।',
         emailPlaceholder: 'ਆਪਣਾ ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ',
         selectJacket: 'ਬ੍ਰਾਂਡ ਜੈਕੇਟ ਚੁਣੋ:',
+        navHome: 'ਮੁੱਖ ਪੰਨਾ',
+        navRecord: 'ਰਿਕਾਰਡ',
+        navProduct: 'ਉਤਪਾਦ',
+        contestTitle: 'ਆਪਣੀ ਫ਼ਸਲ ਦਿਖਾਓ, ਇਨਾਮ ਜਿੱਤੋ!',
+        contestStep1: 'ਆਪਣੀ ਫ਼ਸਲ ਦੇ ਨਾਲ ਇੱਕ ਵੀਡੀਓ ਬਣਾਓ',
+        contestStep2: "ਇਸਨੂੰ Facebook 'ਤੇ ਸ਼ੇਅਰ ਕਰੋ",
+        contestStep3: 'ਸਾਡੇ Facebook ਪੇਜ ਨੂੰ ਫਾਲੋ ਕਰੋ',
+        recordVideoBtn: 'ਵੀਡੀਓ ਬਣਾਓ',
+        videoTutorial: 'ਵੀਡੀਓ ਕਿਵੇਂ ਰਿਕਾਰਡ ਕਰਨਾ ਹੈ',
+        videoTutorialLabel: 'ਟਿਊਟੋਰਿਅਲ: ਆਪਣੀ ਕਹਾਣੀ ਕਿਵੇਂ ਰਿਕਾਰਡ ਕਰਨੀ ਹੈ',
+        testimonialsTitle: 'ਕਿਸਾਨ ਦੀਆਂ ਕਹਾਣੀਆਂ ਅਤੇ ਵੀਡੀਓ',
+        testimonialsSubtitle: 'ਸਵਾ 7501 ਉਗਾਉਣ ਵਾਲਿਆਂ ਦੇ ਅਸਲ ਵੀਡੀਓ ਅਨੁਭਵ',
+        watchStory: 'ਵੀਡੀਓ ਦੇਖੋ',
+        termsHeading: 'ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ',
+        campaignTitle: 'Campaign: ਫ਼ਸਲ ਦਿਖਾਓ, ਇਨਾਮ ਪਾਓ!',
+        hl1Title: '1. ਵੀਡੀਓ ਬਣਾਓ',
+        hl1Desc: 'ਫ਼ਸਲ ਦੇ ਨਾਲ ਛੋਟਾ ਵੀਡੀਓ',
+        hl2Title: '2. FB ਤੇ ਸ਼ੇਅਰ',
+        hl2Desc: '#FasalDikhaoInaamPao',
+        hl3Title: '3. Lucky Draw',
+        hl3Desc: 'Eligible Entries ਵਿੱਚੋਂ ਚੋਣ',
+        termsAccordionTitle: 'Terms & Conditions (10 Official Rules)',
+        rule1: 'ਭਾਗ ਲੈਣ ਲਈ, ਆਪਣੀ ਫ਼ਸਲ ਦੇ ਨਾਲ ਇੱਕ ਛੋਟਾ ਵੀਡੀਓ ਰਿਕਾਰਡ ਕਰੋ।',
+        rule2: 'ਵੀਡੀਓ ਨੂੰ ਆਪਣੇ Facebook Profile/Page ਤੇ #FasalDikhaoInaamPao ਦੇ ਨਾਲ ਪੋਸਟ ਕਰੋ।',
+        rule3: 'Savannah Seeds ਦੇ Facebook Page ਨੂੰ Follow ਕਰੋ।',
+        rule4: 'ਇੱਕ ਕਿਸਾਨ ਕਈ ਵਾਰ Campaign ਵਿੱਚ ਭਾਗ ਲੈ ਸਕਦਾ ਹੈ, ਪਰ ਸਿਰਫ Valid Entries ਹੀ ਲੱਕੀ ਡਰਾਅ ਲਈ ਮੰਨੀਆਂ ਜਾਣਗੀਆਂ।',
+        rule5: 'ਸਾਰੀਆਂ Eligible Entries ਵਿੱਚੋਂ Winners ਦੀ ਚੋਣ Lucky Draw ਰਾਹੀਂ ਕੀਤੀ ਜਾਵੇਗੀ।',
+        rule6: 'Winner ਘੋਸ਼ਿਤ ਹੋਣ ਤੇ, ਐਂਟਰੀ ਅਤੇ Participant Details Verify ਹੋਣ ਤੋਂ ਬਾਅਦ ਇਨਾਮ ਦਿੱਤਾ ਜਾਵੇਗਾ।',
+        rule7: 'Winners ਨਾਲ Facebook / Phone ਰਾਹੀਂ ਸੰਪਰਕ ਕੀਤਾ ਜਾਵੇਗਾ।',
+        rule8: 'Verification ਤੋਂ ਬਾਅਦ Prize ਪ੍ਰਦਾਨ ਕੀਤਾ ਜਾਵੇਗਾ।',
+        rule9: 'Winner ਦੀਆਂ Photos/Videos ਨੂੰ ਉਹਨਾਂ ਦੀ ਸਹਿਮਤੀ ਨਾਲ Campaign Communication ਵਿੱਚ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਹੈ।',
+        rule10: 'Campaign ਵਿੱਚ ਭਾਗ ਲੈਣ ਦਾ ਅਰਥ ਹੈ ਕਿ ਭਾਗੀਦਾਰ ਇਹਨਾਂ Terms & Conditions ਨਾਲ ਸਹਿਮਤ ਹਨ।',
+        disclaimerFooter: 'Savannah Seeds India Pvt. Ltd. • ਸਾਰੇ ਹੱਕ ਰਾਖਵੇਂ ਹਨ',
+        shareFacebook: 'Facebook ਤੇ ਸ਼ੇਅਰ ਕਰੋ',
+        shareInstagram: 'Instagram ਤੇ ਸ਼ੇਅਰ ਕਰੋ',
     }
 };
 
@@ -357,11 +462,6 @@ function initRecording() {
     btnRecordAgain?.addEventListener('click', () => {
         showRecordStep('permission');
         state.recordedBlob = null;
-    });
-
-    btnBackHome?.addEventListener('click', () => {
-        navigateTo('home');
-        showRecordStep('permission');
     });
 
     btnSwitchCamera?.addEventListener('click', async () => {
@@ -1034,34 +1134,10 @@ async function downloadBrandJacketedVideo() {
 }
 
 function addJacketSelector(parentContainer) {
-    // Check if selector already exists
-    const existingSelector = parentContainer.parentElement?.querySelector('.jacket-selector-container');
-    if (existingSelector) existingSelector.remove();
-
-    const container = document.createElement('div');
-    container.className = 'jacket-selector-container';
-
-    const label = document.createElement('h3');
-    label.className = 'jacket-selector-label';
-    label.textContent = translations[state.currentLang]?.selectJacket || 'Select Brand Jacket';
-
-    const optionsContainer = document.createElement('div');
-    optionsContainer.className = 'jacket-options-wrapper';
-
-    const hindiOpt = createJacketOption('hindi', 'assets/Hindi.jpeg', 'Hindi');
-    const punjabiOpt = createJacketOption('punjabi', 'assets/Punjabi.jpeg', 'Punjabi');
-
-    if (state.selectedJacket === 'hindi') hindiOpt.classList.add('selected');
-    else punjabiOpt.classList.add('selected');
-
-    optionsContainer.appendChild(hindiOpt);
-    optionsContainer.appendChild(punjabiOpt);
-
-    container.appendChild(label);
-    container.appendChild(optionsContainer);
-
-    // Insert after the preview container
-    parentContainer.after(container);
+    // Intentionally empty.
+    // The jacket is now automatically selected based on the current language
+    // (Hindi jacket for Hindi, Punjabi jacket for Punjabi)
+    // No manual selector UI is needed.
 }
 
 function createJacketOption(jacketId, imgSrc, label) {
@@ -1114,5 +1190,208 @@ function initSubscribe() {
         } else {
             alert('Please enter a valid email address.');
         }
+    });
+}
+
+// ==========================================
+// Testimonial Carousel Logic
+// ==========================================
+const testimonialsTrack = document.getElementById('testimonials-scroll-track');
+const btnTestimonialsPrev = document.getElementById('testimonials-prev');
+const btnTestimonialsNext = document.getElementById('testimonials-next');
+const testimonialDots = document.querySelectorAll('.testimonial-dot');
+
+if (testimonialsTrack && btnTestimonialsPrev && btnTestimonialsNext) {
+    const updateDots = (scrollLeft) => {
+        const cardWidth = testimonialsTrack.clientWidth;
+        const index = Math.round(scrollLeft / cardWidth);
+        testimonialDots.forEach(dot => dot.classList.remove('active'));
+        if (testimonialDots[index]) {
+            testimonialDots[index].classList.add('active');
+        }
+    };
+
+    btnTestimonialsPrev.addEventListener('click', () => {
+        testimonialsTrack.scrollBy({ left: -testimonialsTrack.clientWidth, behavior: 'smooth' });
+    });
+
+    btnTestimonialsNext.addEventListener('click', () => {
+        testimonialsTrack.scrollBy({ left: testimonialsTrack.clientWidth, behavior: 'smooth' });
+    });
+
+    testimonialsTrack.addEventListener('scroll', () => {
+        updateDots(testimonialsTrack.scrollLeft);
+    });
+    
+    // Initial dot setup
+    testimonialDots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            const index = parseInt(e.target.dataset.index);
+            testimonialsTrack.scrollTo({ left: index * testimonialsTrack.clientWidth, behavior: 'smooth' });
+        });
+    });
+}
+
+// ==========================================
+// Farmer Video Modal Logic
+// ==========================================
+const farmerModal = document.getElementById('farmer-video-modal');
+const farmerModalClose = document.getElementById('farmer-modal-close');
+const farmerModalPlayer = document.getElementById('farmer-modal-player');
+const farmerModalName = document.getElementById('farmer-modal-name');
+const farmerModalLoc = document.getElementById('farmer-modal-loc');
+const farmerModalYield = document.getElementById('farmer-modal-yield');
+const farmerModalQuote = document.getElementById('farmer-modal-quote');
+const farmerVideoCards = document.querySelectorAll('.farmer-video-thumb-wrap');
+
+farmerVideoCards.forEach(card => {
+    card.addEventListener('click', () => {
+        if(farmerModalName) farmerModalName.textContent = card.dataset.name;
+        if(farmerModalLoc) farmerModalLoc.textContent = card.dataset.loc;
+        if(farmerModalYield) farmerModalYield.textContent = card.dataset.yield;
+        if(farmerModalQuote) farmerModalQuote.textContent = card.dataset.quote;
+        if(farmerModalPlayer) {
+            farmerModalPlayer.src = card.dataset.video;
+            farmerModalPlayer.play().catch(e => console.log('Autoplay prevented', e));
+        }
+        
+        if(farmerModal) {
+            farmerModal.classList.add('show');
+            farmerModal.setAttribute('aria-hidden', 'false');
+        }
+    });
+});
+
+if (farmerModalClose && farmerModal) {
+    farmerModalClose.addEventListener('click', () => {
+        farmerModal.classList.remove('show');
+        farmerModal.setAttribute('aria-hidden', 'true');
+        if(farmerModalPlayer) farmerModalPlayer.pause();
+    });
+}
+
+// ==========================================
+// Terms & Conditions Accordion Logic
+// ==========================================
+const disclaimerToggleBtn = document.getElementById('disclaimer-toggle-btn');
+const disclaimerContent = document.getElementById('disclaimer-content');
+
+if (disclaimerToggleBtn && disclaimerContent) {
+    disclaimerToggleBtn.addEventListener('click', () => {
+        const isExpanded = disclaimerToggleBtn.getAttribute('aria-expanded') === 'true';
+        
+        if (isExpanded) {
+            disclaimerToggleBtn.setAttribute('aria-expanded', 'false');
+            disclaimerToggleBtn.classList.remove('expanded');
+            disclaimerContent.classList.add('hidden');
+        } else {
+            disclaimerToggleBtn.setAttribute('aria-expanded', 'true');
+            disclaimerToggleBtn.classList.add('expanded');
+            disclaimerContent.classList.remove('hidden');
+        }
+    });
+}
+
+// ==========================================
+// Make a Video CTA Logic
+// ==========================================
+const contestRecordBtn = document.getElementById('contest-record-btn');
+const navRecordBtn = document.getElementById('nav-record');
+if (contestRecordBtn && navRecordBtn) {
+    contestRecordBtn.addEventListener('click', () => {
+        // Trigger a click on the main bottom navigation record button
+        navRecordBtn.click();
+        // Also scroll to top if needed
+        window.scrollTo(0, 0);
+    });
+}
+
+// ==========================================
+// Facebook Share Logic
+// ==========================================
+const btnShareFb = document.getElementById('btn-share-fb');
+if (btnShareFb) {
+    btnShareFb.addEventListener('click', async () => {
+        const text = '#FasalDikhaoInaamPao';
+        
+        // If we have a recorded blob, try sharing it directly using the Web Share API (Files support)
+        if (navigator.share && state.recordedBlob) {
+            try {
+                // Convert Blob to File object
+                const ext = state.recordedBlob.type.includes('mp4') ? 'mp4' : 'webm';
+                const file = new File([state.recordedBlob], `Savannah-Farmer-Video-${Date.now()}.${ext}`, { type: state.recordedBlob.type });
+                
+                // Check if browser supports sharing files
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        title: 'Savannah Seeds Contest',
+                        text: text,
+                        files: [file]
+                    });
+                    console.log('Video shared successfully');
+                    return; // Stop here if native file sharing worked
+                }
+            } catch (err) {
+                console.warn('Native file share failed, falling back:', err);
+                // Continue to fallback
+            }
+        }
+        
+        // Fallback: Just open Facebook sharing dialog with text (since we can't auto-attach local files in FB Sharer)
+        // Note: Facebook Sharer doesn't support local file paths, so we encourage the user to download first.
+        alert(
+            (translations[state.currentLang]?.downloadPrompt || 'Please download the video first to upload it to Facebook.') + '\n\n' +
+            'Caption: ' + text
+        );
+        // Optionally copy the hashtag to clipboard
+        navigator.clipboard.writeText(text).catch(() => {});
+        
+        // Open Facebook (User will have to manually attach the video)
+        const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://www.facebook.com/hashtag/FasalDikhaoInaamPao')}&quote=${encodeURIComponent(text)}`;
+        window.open(fbShareUrl, '_blank', 'width=600,height=400');
+    });
+}
+
+// ==========================================
+// Instagram Share Logic
+// ==========================================
+const btnShareIg = document.getElementById('btn-share-ig');
+if (btnShareIg) {
+    btnShareIg.addEventListener('click', async () => {
+        const text = '#FasalDikhaoInaamPao';
+        
+        // If we have a recorded blob, try sharing it directly using the Web Share API (Files support)
+        if (navigator.share && state.recordedBlob) {
+            try {
+                // Convert Blob to File object
+                const ext = state.recordedBlob.type.includes('mp4') ? 'mp4' : 'webm';
+                const file = new File([state.recordedBlob], `Savannah-Farmer-Video-${Date.now()}.${ext}`, { type: state.recordedBlob.type });
+                
+                // Check if browser supports sharing files
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        title: 'Savannah Seeds Contest',
+                        text: text,
+                        files: [file]
+                    });
+                    console.log('Video shared successfully');
+                    return; // Stop here if native file sharing worked
+                }
+            } catch (err) {
+                console.warn('Native file share failed, falling back:', err);
+            }
+        }
+        
+        // Fallback: Just alert user to download and open Instagram.
+        // Instagram does not have a web sharer that accepts pre-filled video/text.
+        alert(
+            (translations[state.currentLang]?.downloadPrompt || 'Please download the video first to upload it to Instagram.') + '\n\n' +
+            'Caption: ' + text
+        );
+        // Optionally copy the hashtag to clipboard
+        navigator.clipboard.writeText(text).catch(() => {});
+        
+        // Open Instagram (User will have to manually attach the video and paste caption)
+        window.open('https://www.instagram.com/', '_blank');
     });
 }
