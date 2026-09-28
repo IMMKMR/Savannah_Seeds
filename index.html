@@ -23,6 +23,30 @@
         </div>
     </div>
 
+    <!-- Registration Modal -->
+    <div id="registration-modal" class="registration-modal">
+        <div class="registration-modal-content">
+            <img src="assets/Logo.png" alt="Savannah Seeds" class="registration-logo">
+            <h2>Welcome</h2>
+            <p>Please enter your details to access the app</p>
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="reg-name">Name</label>
+                    <input type="text" id="reg-name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-location">Location</label>
+                    <input type="text" id="reg-location" placeholder="Enter your location" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-mobile">Mobile Number</label>
+                    <input type="tel" id="reg-mobile" placeholder="Enter your mobile number" pattern="[0-9]{10}" title="10 digit mobile number" required>
+                </div>
+                <button type="submit" class="btn-primary" style="margin-top: 15px; width: 100%;">Continue</button>
+            </form>
+        </div>
+    </div>
+
     <div id="app" class="app-container">
         <!-- Header -->
         <header id="header" class="header">
