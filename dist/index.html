@@ -8,16 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/Savannah_Seeds/assets/Logo-Bj-861Ko.png">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
     
-  <script type="module" crossorigin src="/Savannah_Seeds/assets/index-D3duL3jC.js"></script>
-  <link rel="stylesheet" crossorigin href="/Savannah_Seeds/assets/index-DLw4hult.css">
+  <script type="module" crossorigin src="/Savannah_Seeds/assets/index-D9kcKBHh.js"></script>
+  <link rel="stylesheet" crossorigin href="/Savannah_Seeds/assets/index-DIpekWZP.css">
 </head>
 <body>
     <!-- Splash Screen -->
     <div id="splash-screen" class="splash-screen">
         <div class="splash-inner">
-            <img src="assets/Logo.png" alt="Savannah Seeds" class="splash-logo">
+            <img src="assets/logo.svg" alt="Savannah Seeds" class="splash-logo">
             <div class="splash-tagline">Smart Rice • Smart Farmer</div>
             <div class="splash-loader">
                 <div class="splash-loader-bar"></div>
@@ -29,7 +29,7 @@
         <!-- Header -->
         <header id="header" class="header">
             <div class="header-inner">
-                <img src="assets/Logo.png" alt="Savannah Seeds" class="header-logo" id="header-logo">
+                <img src="assets/logo.svg" alt="Savannah Seeds" class="header-logo" id="header-logo">
                 <button id="lang-toggle" class="lang-toggle" aria-label="Toggle Language" title="Switch Language">
                     <img src="assets/Translate icon.svg" alt="Translate" width="24" height="24">
                 </button>
@@ -93,11 +93,11 @@
                                     <source src="assets/banner_video.mp4" type="video/mp4">
                                 </video>
                                 <img src="assets/Sava 7501 Pack 2.png" class="floating-packshot" alt="Savannah Packshot">
-                                <div class="banner-text-overlay">क्षमता पूरी, उपज भरपूर।</div>
+                                <div class="banner-text-overlay" data-i18n="bannerText">उपज दिखाओ, इनाम पाओ!</div>
                             </div>
                             <div class="banner-slide">
                                 <img src="assets/Savannah_Banner03_Product 3.png" alt="Savannah Banner 1" class="hero-banner-img">
-                                <div class="banner-text-overlay">क्षमता पूरी, उपज भरपूर।</div>
+                                <div class="banner-text-overlay" data-i18n="bannerText">उपज दिखाओ, इनाम पाओ!</div>
                             </div>
                         </div>
 
@@ -611,7 +611,14 @@
                         </div>
                         <div class="camera-controls">
 
-                            <div class="camera-control-spacer" style="width: 44px; height: 44px;"></div>
+                            <button id="btn-upload-video" class="upload-btn" aria-label="Upload Video">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </button>
+                            <input type="file" id="upload-video-input" accept="video/mp4,video/x-m4v,video/*" style="display: none;">
                             <button id="btn-record" class="record-btn" aria-label="Start Recording">
                                 <div class="record-btn-inner"></div>
                             </button>
@@ -633,7 +640,7 @@
                 <div id="record-step-processing" class="record-step">
                     <div class="processing-content">
                         <div class="processing-logo">
-                            <img src="assets/Logo.png" alt="Savannah" class="processing-logo-img pulse-animation">
+                            <img src="assets/logo.svg" alt="Savannah" class="processing-logo-img pulse-animation">
                         </div>
                         <p class="processing-text" data-i18n="processingText">Please wait. Keep this screen open.</p>
                         <div class="processing-bar">

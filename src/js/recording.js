@@ -7,6 +7,8 @@ window.initRecording = function() {
     const btnBackHome = $('#btn-back-home');
     const btnSwitchCamera = $('#btn-switch-camera');
     const btnDownload = $('#btn-download');
+    const btnUploadVideo = $('#btn-upload-video');
+    const uploadVideoInput = $('#upload-video-input');
 
     btnAllow?.addEventListener('click', async () => {
         await requestCamera();
@@ -39,6 +41,29 @@ window.initRecording = function() {
 
     btnDownload?.addEventListener('click', () => {
         downloadBrandJacketedVideo();
+    });
+
+    btnUploadVideo?.addEventListener('click', () => {
+        uploadVideoInput?.click();
+    });
+
+    uploadVideoInput?.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        // Stop camera if running
+        if (state.stream) {
+            state.stream.getTracks().forEach(t => t.stop());
+            state.stream = null;
+        }
+
+        // Use the uploaded file as the recorded blob
+        state.recordedBlob = file;
+        
+        // Reset the input value to allow uploading the same file again if needed
+        e.target.value = '';
+
+        processRecording();
     });
 }
 
@@ -291,10 +316,10 @@ window.renderBrandJacketFrame = function(canvas, video, jacketImg) {
     const ch = canvas.height;
 
     const greenArea = {
-        x: cw * 0.18,
-        y: ch * 0.24,
-        w: cw * 0.64,
-        h: ch * 0.48,
+        x: cw * 0.13,
+        y: ch * 0.28,
+        w: cw * 0.75,
+        h: ch * 0.61,
     };
 
     const r = 16;

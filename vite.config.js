@@ -7,6 +7,7 @@ import fs from 'fs';
 function htmlIncludePlugin() {
   return {
     name: 'html-include',
+    enforce: 'pre',
     transformIndexHtml(html) {
       return html.replace(/<include src="(.*?)"><\/include>/g, (match, src) => {
         try {

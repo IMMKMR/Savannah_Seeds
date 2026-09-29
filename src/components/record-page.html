@@ -36,7 +36,14 @@
                         </div>
                         <div class="camera-controls">
 
-                            <div class="camera-control-spacer" style="width: 44px; height: 44px;"></div>
+                            <button id="btn-upload-video" class="upload-btn" aria-label="Upload Video">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </button>
+                            <input type="file" id="upload-video-input" accept="video/mp4,video/x-m4v,video/*" style="display: none;">
                             <button id="btn-record" class="record-btn" aria-label="Start Recording">
                                 <div class="record-btn-inner"></div>
                             </button>
@@ -58,7 +65,7 @@
                 <div id="record-step-processing" class="record-step">
                     <div class="processing-content">
                         <div class="processing-logo">
-                            <img src="assets/Logo.png" alt="Savannah" class="processing-logo-img pulse-animation">
+                            <img src="assets/logo.svg" alt="Savannah" class="processing-logo-img pulse-animation">
                         </div>
                         <p class="processing-text" data-i18n="processingText">Please wait. Keep this screen open.</p>
                         <div class="processing-bar">

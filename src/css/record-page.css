@@ -247,9 +247,29 @@
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
 }
+.upload-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    z-index: 10;
+}
 .switch-camera-btn:hover {
     background: rgba(0, 0, 0, 0.7);
     border-color: rgba(255, 255, 255, 0.6);
+}
+.upload-btn:hover {
+    background: var(--color-primary-light, #2C6A5A);
+    border-color: #fff;
+    transform: scale(1.05);
 }
 
 .record-btn.recording .record-btn-inner {
