@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Savannah Seeds — Sava 7501 Hybrid Paddy | Create Your Branded Farmer Video</title>
+    <meta name="description" content="Savannah Seeds Sava 7501 Smart Rice — Hybrid Paddy. Create your branded farmer video and explore premium seed products.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/Savannah_Seeds/assets/Logo-Bj-861Ko.png">
+    
+  <script type="module" crossorigin src="/Savannah_Seeds/assets/index-D3duL3jC.js"></script>
+  <link rel="stylesheet" crossorigin href="/Savannah_Seeds/assets/index-DLw4hult.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-inner">
+            <img src="assets/Logo.png" alt="Savannah Seeds" class="splash-logo">
+            <div class="splash-tagline">Smart Rice • Smart Farmer</div>
+            <div class="splash-loader">
+                <div class="splash-loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="header-inner">
+                <img src="assets/Logo.png" alt="Savannah Seeds" class="header-logo" id="header-logo">
+                <button id="lang-toggle" class="lang-toggle" aria-label="Toggle Language" title="Switch Language">
+                    <img src="assets/Translate icon.svg" alt="Translate" width="24" height="24">
+                </button>
+            </div>
+            <div class="header-wave">
+                <svg viewBox="0 0 400 40" preserveAspectRatio="none">
+                    <!-- White background fill -->
+                    <path d="M 0,0 L 400,0 L 400,30 C 280,40 120,0 0,15 Z" fill="#ffffff"/>
+                    <!-- Green wave border -->
+                    <path d="M 0,15 C 120,0 280,40 400,30" fill="none" stroke="#194E44" stroke-width="4"/>
+                </svg>
+            </div>
+        </header>
+
+        <!-- Registration Modal -->
+        <div id="registration-modal" class="registration-modal">
+            <div class="registration-modal-content">
+                <!-- We don't need the logo here anymore since it's in the header! Actually, we can keep it or remove it. Let's keep it but maybe we don't need it if the header has it. The user said "also to hat that top bar". Let's keep the logo but remove the margin if needed, or leave it. Wait, header is visible so double logo might be weird. Let's keep it to be safe. No, header has it. Let's remove the extra logo from the modal. -->
+                <h2 data-i18n="regWelcome">Welcome</h2>
+                <p data-i18n="regDesc">Please enter your details to access the app</p>
+                <form id="registration-form">
+                    <div class="form-group">
+                        <label for="reg-name" data-i18n="regNameLabel">Name</label>
+                        <input type="text" id="reg-name" placeholder="Enter your name" data-i18n-placeholder="regNamePlaceholder" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-location" data-i18n="regLocLabel">Location</label>
+                        <input type="text" id="reg-location" placeholder="Enter your location" data-i18n-placeholder="regLocPlaceholder" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-mobile" data-i18n="regMobLabel">Mobile Number</label>
+                        <input type="tel" id="reg-mobile" placeholder="Enter your mobile number" data-i18n-placeholder="regMobPlaceholder" pattern="[0-9]{10}" title="10 digit mobile number" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="margin-top: 15px; width: 100%;" data-i18n="regBtn">Continue</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Language Selector Modal -->
+        <div id="lang-modal" class="lang-modal hidden">
+            <div class="lang-modal-backdrop"></div>
+            <div class="lang-modal-content">
+                <h3>Select Language</h3>
+                <button class="lang-option active" data-lang="hi">हिन्दी (Hindi)</button>
+                <button class="lang-option" data-lang="pa">ਪੰਜਾਬੀ (Punjabi)</button>
+            </div>
+        </div>
+
+        <!-- Pages Container -->
+        <main id="pages" class="pages">
+            <!-- ===== HOME PAGE ===== -->
+            <section id="page-home" class="page active" style="padding-top: 0; background: white;">
+                <!-- Top Section (Green) -->
+                <div class="home-top-section">
+                    <!-- The image/video carousel -->
+                    <div class="home-hero-img-container">
+                        <div class="banner-carousel" id="home-banner-carousel">
+                            <div class="banner-slide">
+                                <!-- User Provided Video Slide -->
+                                <video autoplay loop muted playsinline class="hero-banner-video">
+                                    <source src="assets/banner_video.mp4" type="video/mp4">
+                                </video>
+                                <img src="assets/Sava 7501 Pack 2.png" class="floating-packshot" alt="Savannah Packshot">
+                                <div class="banner-text-overlay">क्षमता पूरी, उपज भरपूर।</div>
+                            </div>
+                            <div class="banner-slide">
+                                <img src="assets/Savannah_Banner03_Product 3.png" alt="Savannah Banner 1" class="hero-banner-img">
+                                <div class="banner-text-overlay">क्षमता पूरी, उपज भरपूर।</div>
+                            </div>
+                        </div>
+
+                        <!-- Concave wave at the bottom of the image transitioning to the green background -->
+                        <div class="img-bottom-wave">
+                            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                                <path d="M0,0 C400,120 1040,120 1440,0 L1440,120 L0,120 Z" fill="var(--color-primary)"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="home-top-content">
+                        <!-- Crop Contest Card (Matching Reference Example) -->
+                        <div class="crop-contest-card">
+                            <h2 class="crop-contest-title" data-i18n="contestTitle">UPAJ dikhao, Inaam Pao!</h2>
+
+                            <!-- 3 Step Flow with Green Arrows -->
+                            <div class="contest-steps-flow">
+                                <!-- Step 1: Make a video with your crop -->
+                                <div class="contest-step-item" id="step-make-video">
+                                    <div class="contest-icon-box crop-camera-icon">
+                                        <div class="viewfinder-frame">
+                                            <span class="vf-corner vf-tl"></span>
+                                            <span class="vf-corner vf-tr"></span>
+                                            <span class="vf-corner vf-bl"></span>
+                                            <span class="vf-corner vf-br"></span>
+                                            <!-- Green Paddy Leaf Icon -->
+                                            <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                                                <path d="M12 2C7 5 4 10 4 15c0 4 3 7 8 7 5 0 8-3 8-7 0-5-3-10-8-13z" fill="#4CAF50" stroke="#2E7D32" stroke-width="1.2"/>
+                                                <path d="M12 4v16M12 10l-4 4M12 14l5 3M12 7l4 3M12 12l-5 2" stroke="#E8F5E9" stroke-width="1" stroke-linecap="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="contest-step-label" data-i18n="contestStep1">Make a video with your crop</span>
+                                </div>
+
+                                <!-- Flow Arrow 1 -->
+                                <div class="contest-arrow">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M3 12h12" stroke="#84CC16" stroke-width="3.5" stroke-linecap="round"/>
+                                        <path d="M12 6.5l6 5.5-6 5.5" fill="#84CC16" stroke="#84CC16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Step 2: Share it on Facebook -->
+                                <div class="contest-step-item" id="step-share-fb">
+                                    <div class="contest-icon-box fb-share-icon">
+                                        <div class="fb-post-mockup">
+                                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                                <rect x="2" y="2" width="20" height="20" rx="5" fill="#1877F2"/>
+                                                <path d="M16 11.5h-2.5v7.5h-3v-7.5h-2v-2.8h2v-2.2c0-2.4 1.4-3.8 3.7-3.8 1.1 0 2 .1 2.3.1v2.6h-1.5c-1.2 0-1.5.6-1.5 1.5v1.8h3l-.5 2.8z" fill="white"/>
+                                            </svg>
+                                            <div class="fb-share-badge">
+                                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round">
+                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="contest-step-label" data-i18n="contestStep2">Share it on Facebook</span>
+                                </div>
+
+                                <!-- Flow Arrow 2 -->
+                                <div class="contest-arrow">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M3 12h12" stroke="#84CC16" stroke-width="3.5" stroke-linecap="round"/>
+                                        <path d="M12 6.5l6 5.5-6 5.5" fill="#84CC16" stroke="#84CC16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Step 3: Follow our Facebook page -->
+                                <div class="contest-step-item" id="step-follow-page">
+                                    <div class="contest-icon-box fb-page-icon">
+                                        <div class="prize-badge-mockup">
+                                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                                <rect x="2" y="2" width="20" height="20" rx="6" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+                                                <path d="M6 10h2v7H6z" fill="#1877F2"/>
+                                                <path d="M8 12c1.2 0 2-.8 2.5-2.2.4-1.2.7-1.8 1.2-1.8s.5.4.5 1.2v2.8h3c.8 0 1.2.4 1.2 1 0 .3-.1.6-.4.8.3.2.5.6.4 1-.1.4-.4.8-.8 1 .2.3.3.6.2.9-.2.4-.6.8-1.1.9h-3l-2.7-1.6" fill="#1877F2"/>
+                                                <circle cx="18" cy="6" r="3.5" fill="#D4A843"/>
+                                                <polygon points="18 3.8 18.8 5.4 20.4 5.6 19.2 6.8 19.6 8.4 18 7.6 16.4 8.4 16.8 6.8 15.6 5.6 17.2 5.4 18 3.8" fill="white"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="contest-step-label" data-i18n="contestStep3">Follow our Facebook page</span>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Action Button (Like the Example) -->
+                            <button id="contest-record-btn" class="crop-contest-cta-btn">
+                                <span data-i18n="recordVideoBtn">Make a Video</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Section (White) -->
+                <div class="home-bottom-section">
+                    <h2 class="home-cta-text green-text" data-i18n="videoTutorial">How to Record Video</h2>
+                    <!-- Video Tutorial Box -->
+                    <div class="home-video-box" id="home-video-tutorial">
+                        <video id="tutorial-player" class="tutorial-video-element" src="assets/banner_video.mp4" playsinline preload="metadata"></video>
+                        <div class="video-box-overlay" id="tutorial-overlay">
+                            <div class="video-play-btn-circle">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="23 7 16 12 23 17 23 7" fill="white"></polygon>
+                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2" fill="none"></rect>
+                                </svg>
+                            </div>
+                            <span class="video-box-label" data-i18n="videoTutorialLabel">Tutorial: How to Record Your Story</span>
+                        </div>
+                    </div>
+
+                    <!-- Farmer Testimonials Section -->
+                    <div class="farmer-testimonials-section">
+                        <div class="testimonials-header">
+                            <h2 class="home-cta-text green-text" data-i18n="testimonialsTitle">Farmer Stories & Videos</h2>
+                            <p class="testimonials-subtitle" data-i18n="testimonialsSubtitle">Real video experiences from Sava 7501 growers</p>
+                        </div>
+
+                        <!-- Testimonials Scroll Carousel -->
+                        <div class="testimonials-scroll-wrapper">
+                            <div class="testimonials-scroll-track" id="testimonials-scroll-track">
+                                <!-- Testimonial 1: Gurpreet Singh -->
+                                <div class="testimonial-card farmer-video-card" data-index="0">
+                                    <div class="farmer-video-thumb-wrap" 
+                                         data-video="assets/banner_video.mp4" 
+                                         data-name="Gurpreet Singh" 
+                                         data-loc="Ludhiana, Punjab • Sava 7501" 
+                                         data-yield="+25% Yield" 
+                                         data-quote="Sava 7501 gave me 32 quintals per acre. The tillering and disease resistance against blast was phenomenal!">
+                                        <img src="assets/farmer_gurpreet.jpg" alt="Gurpreet Singh" class="farmer-video-poster" loading="lazy">
+                                        <div class="farmer-video-overlay">
+                                            <div class="farmer-play-btn" aria-label="Play Farmer Video">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                                                    <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                                                </svg>
+                                            </div>
+                                            <span class="video-duration-tag">
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                                0:45
+                                            </span>
+                                        </div>
+                                        <div class="yield-badge-floating">+25% Yield</div>
+                                        <div class="video-live-pill">
+                                            <span class="pulse-red-dot"></span>
+                                            <span>VIDEO STORY</span>
+                                        </div>
+                                    </div>
+                                    <div class="farmer-card-body">
+                                        <div class="testimonial-top">
+                                            <div class="farmer-info">
+                                                <h4 class="farmer-name">Gurpreet Singh</h4>
+                                                <span class="farmer-loc">Ludhiana, Punjab • Sava 7501</span>
+                                            </div>
+                                            <div class="star-rating">★★★★★</div>
+                                        </div>
+                                        <p class="testimonial-quote">"Sava 7501 gave me 32 quintals per acre. The tillering and disease resistance against blast was phenomenal!"</p>
+                                        <div class="testimonial-footer">
+                                            <span class="verified-tag">✓ Verified Farmer</span>
+                                            <button class="watch-video-btn" 
+                                                    data-video="assets/banner_video.mp4" 
+                                                    data-name="Gurpreet Singh" 
+                                                    data-loc="Ludhiana, Punjab • Sava 7501" 
+                                                    data-yield="+25% Yield" 
+                                                    data-quote="Sava 7501 gave me 32 quintals per acre. The tillering and disease resistance against blast was phenomenal!">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                                                <span data-i18n="watchStory">Watch Video</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 2: Rajesh Kumar -->
+                                <div class="testimonial-card farmer-video-card" data-index="1">
+                                    <div class="farmer-video-thumb-wrap" 
+                                         data-video="assets/banner_video.mp4" 
+                                         data-name="Rajesh Kumar" 
+                                         data-loc="Karnal, Haryana • Sava 7501" 
+                                         data-yield="+28 Q/Acre" 
+                                         data-quote="Best hybrid paddy seed I have cultivated in 10 years. Beautiful long grains, zero lodging, and higher mandi price.">
+                                        <img src="assets/farmer_rajesh.jpg" alt="Rajesh Kumar" class="farmer-video-poster" loading="lazy">
+                                        <div class="farmer-video-overlay">
+                                            <div class="farmer-play-btn" aria-label="Play Farmer Video">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                                                    <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                                                </svg>
+                                            </div>
+                                            <span class="video-duration-tag">
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                                1:12
+                                            </span>
+                                        </div>
+                                        <div class="yield-badge-floating">+28 Q/Acre</div>
+                                        <div class="video-live-pill">
+                                            <span class="pulse-red-dot"></span>
+                                            <span>VIDEO STORY</span>
+                                        </div>
+                                    </div>
+                                    <div class="farmer-card-body">
+                                        <div class="testimonial-top">
+                                            <div class="farmer-info">
+                                                <h4 class="farmer-name">Rajesh Kumar</h4>
+                                                <span class="farmer-loc">Karnal, Haryana • Sava 7501</span>
+                                            </div>
+                                            <div class="star-rating">★★★★★</div>
+                                        </div>
+                                        <p class="testimonial-quote">"Best hybrid paddy seed I have cultivated in 10 years. Beautiful long grains, zero lodging, and higher mandi price."</p>
+                                        <div class="testimonial-footer">
+                                            <span class="verified-tag">✓ Verified Farmer</span>
+                                            <button class="watch-video-btn" 
+                                                    data-video="assets/banner_video.mp4" 
+                                                    data-name="Rajesh Kumar" 
+                                                    data-loc="Karnal, Haryana • Sava 7501" 
+                                                    data-yield="+28 Q/Acre" 
+                                                    data-quote="Best hybrid paddy seed I have cultivated in 10 years. Beautiful long grains, zero lodging, and higher mandi price.">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                                                <span data-i18n="watchStory">Watch Video</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 3: Ramesh Patel -->
+                                <div class="testimonial-card farmer-video-card" data-index="2">
+                                    <div class="farmer-video-thumb-wrap" 
+                                         data-video="assets/banner_video.mp4" 
+                                         data-name="Ramesh Patel" 
+                                         data-loc="Indore, MP • Sava 7301" 
+                                         data-yield="Top Quality" 
+                                         data-quote="Saved on pesticide sprays because of strong disease tolerance. Savannah Seeds' field support was great throughout the season.">
+                                        <img src="assets/farmer_ramesh.jpg" alt="Ramesh Patel" class="farmer-video-poster" loading="lazy">
+                                        <div class="farmer-video-overlay">
+                                            <div class="farmer-play-btn" aria-label="Play Farmer Video">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                                                    <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                                                </svg>
+                                            </div>
+                                            <span class="video-duration-tag">
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                                0:52
+                                            </span>
+                                        </div>
+                                        <div class="yield-badge-floating">Top Quality</div>
+                                        <div class="video-live-pill">
+                                            <span class="pulse-red-dot"></span>
+                                            <span>VIDEO STORY</span>
+                                        </div>
+                                    </div>
+                                    <div class="farmer-card-body">
+                                        <div class="testimonial-top">
+                                            <div class="farmer-info">
+                                                <h4 class="farmer-name">Ramesh Patel</h4>
+                                                <span class="farmer-loc">Indore, MP • Sava 7301</span>
+                                            </div>
+                                            <div class="star-rating">★★★★★</div>
+                                        </div>
+                                        <p class="testimonial-quote">"Saved on pesticide sprays because of strong disease tolerance. Savannah Seeds' field support was great throughout the season."</p>
+                                        <div class="testimonial-footer">
+                                            <span class="verified-tag">✓ Verified Farmer</span>
+                                            <button class="watch-video-btn" 
+                                                    data-video="assets/banner_video.mp4" 
+                                                    data-name="Ramesh Patel" 
+                                                    data-loc="Indore, MP • Sava 7301" 
+                                                    data-yield="Top Quality" 
+                                                    data-quote="Saved on pesticide sprays because of strong disease tolerance. Savannah Seeds' field support was great throughout the season.">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                                                <span data-i18n="watchStory">Watch Video</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 4: Amandeep Kaur -->
+                                <div class="testimonial-card farmer-video-card" data-index="3">
+                                    <div class="farmer-video-thumb-wrap" 
+                                         data-video="assets/banner_video.mp4" 
+                                         data-name="Amandeep Kaur" 
+                                         data-loc="Patiala, Punjab • Sava 7501" 
+                                         data-yield="+30% Profit" 
+                                         data-quote="Our family has planted Savannah seeds for 3 seasons. Superior grain shine, uniform maturity, and unbeatable market demand.">
+                                        <img src="assets/farmer_amandeep.jpg" alt="Amandeep Kaur" class="farmer-video-poster" loading="lazy">
+                                        <div class="farmer-video-overlay">
+                                            <div class="farmer-play-btn" aria-label="Play Farmer Video">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                                                    <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                                                </svg>
+                                            </div>
+                                            <span class="video-duration-tag">
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                                1:05
+                                            </span>
+                                        </div>
+                                        <div class="yield-badge-floating">+30% Profit</div>
+                                        <div class="video-live-pill">
+                                            <span class="pulse-red-dot"></span>
+                                            <span>VIDEO STORY</span>
+                                        </div>
+                                    </div>
+                                    <div class="farmer-card-body">
+                                        <div class="testimonial-top">
+                                            <div class="farmer-info">
+                                                <h4 class="farmer-name">Amandeep Kaur</h4>
+                                                <span class="farmer-loc">Patiala, Punjab • Sava 7501</span>
+                                            </div>
+                                            <div class="star-rating">★★★★★</div>
+                                        </div>
+                                        <p class="testimonial-quote">"Our family has planted Savannah seeds for 3 seasons. Superior grain shine, uniform maturity, and unbeatable market demand."</p>
+                                        <div class="testimonial-footer">
+                                            <span class="verified-tag">✓ Verified Farmer</span>
+                                            <button class="watch-video-btn" 
+                                                    data-video="assets/banner_video.mp4" 
+                                                    data-name="Amandeep Kaur" 
+                                                    data-loc="Patiala, Punjab • Sava 7501" 
+                                                    data-yield="+30% Profit" 
+                                                    data-quote="Our family has planted Savannah seeds for 3 seasons. Superior grain shine, uniform maturity, and unbeatable market demand.">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                                                <span data-i18n="watchStory">Watch Video</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Testimonials Dots & Nav -->
+                            <div class="testimonials-indicators">
+                                <button class="testimonials-nav-btn prev-btn" id="testimonials-prev" aria-label="Previous testimonial">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <div class="testimonials-dots" id="testimonials-dots">
+                                    <span class="testimonial-dot active" data-index="0"></span>
+                                    <span class="testimonial-dot" data-index="1"></span>
+                                    <span class="testimonial-dot" data-index="2"></span>
+                                    <span class="testimonial-dot" data-index="3"></span>
+                                </div>
+                                <button class="testimonials-nav-btn next-btn" id="testimonials-next" aria-label="Next testimonial">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contest Disclaimer & Terms Section -->
+                    <div class="contest-disclaimer-card" id="contest-terms-card">
+                        <div class="tc-card-header">
+                            <div class="tc-shield-badge">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A843" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    <polyline points="9 12 11 14 15 10"/>
+                                </svg>
+                            </div>
+                            <div class="tc-title-block">
+                                <h3 class="tc-main-title" data-i18n="termsHeading">Terms & Conditions</h3>
+                                <div class="tc-campaign-badge">
+                                    <span class="tc-sparkle">🌾</span>
+                                    <span data-i18n="campaignTitle">Campaign: उपज दिखाओ, इनाम पाओ!</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3-Step Quick Highlights Flow -->
+                        <div class="tc-steps-flow">
+                            <div class="tc-flow-step">
+                                <div class="tc-flow-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                    </svg>
+                                </div>
+                                <div class="tc-flow-text">
+                                    <strong data-i18n="hl1Title">1. वीडियो बनाएं</strong>
+                                    <span data-i18n="hl1Desc">उपज के साथ छोटा वीडियो</span>
+                                </div>
+                            </div>
+
+                            <div class="tc-flow-step">
+                                <div class="tc-flow-icon fb-accent">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1877F2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                    </svg>
+                                </div>
+                                <div class="tc-flow-text">
+                                    <strong data-i18n="hl2Title">2. FB पर शेयर</strong>
+                                    <span class="tag-highlight">#UpajDikhaoInaamPao</span>
+                                </div>
+                            </div>
+
+                            <div class="tc-flow-step highlight-step">
+                                <div class="tc-flow-icon gift-accent">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                                        <rect x="2" y="7" width="20" height="5"></rect>
+                                        <line x1="12" y1="22" x2="12" y2="7"></line>
+                                        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                                        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                                    </svg>
+                                </div>
+                                <div class="tc-flow-text">
+                                    <strong data-i18n="hl3Title">3. Lucky Draw</strong>
+                                    <span data-i18n="hl3Desc">Eligible Entries में से चयन</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 10 Rules Accordion Container -->
+                        <div class="tc-accordion-wrapper">
+                            <button class="tc-toggle-btn expanded" id="disclaimer-toggle-btn" type="button" aria-expanded="true">
+                                <div class="tc-btn-content">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                    </svg>
+                                    <span data-i18n="termsAccordionTitle">Terms & Conditions (10 Official Rules)</span>
+                                </div>
+                                <svg class="tc-chevron-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </button>
+
+                            <div class="tc-content-panel" id="disclaimer-content">
+                                <ul class="tc-clean-list">
+                                    <li class="tc-list-card">
+                                        <div class="tc-badge-num">1</div>
+                                        <div class="tc-rule-desc" data-i18n="rule1">किसान अपनी उपज के साथ एक छोटा वीडियो रिकॉर्ड करें।</div>
+                                    </li>
+                                    <li class="tc-list-card">
+                                        <div class="tc-badge-num">2</div>
+                                        <div class="tc-rule-desc" data-i18n="rule2">वीडियो अपने <strong>Facebook Profile/Page</strong> पर <strong>#UpajDikhaoInaamPao</strong> के साथ पोस्ट करें।</div>
+                                    </li>
+                                    <li class="tc-list-card">
+                                        <div class="tc-badge-num">3</div>
+                                        <div class="tc-rule-desc" data-i18n="rule3"><strong>Savannah Seeds</strong> के Facebook Page को <strong>Follow</strong> करें।</div>
+                                    </li>
+                                    <li class="tc-list-card">
+                                        <div class="tc-badge-num">4</div>
+                                        <div class="tc-rule-desc" data-i18n="rule4">केवल निर्धारित Campaign अवधि के भीतर की गई Valid Entries ही स्वीकार की जाएंगी।</div>
+                                    </li>
+                                    <li class="tc-list-card tc-card-gold">
+                                        <div class="tc-badge-num tc-gold-num">5</div>
+                                        <div class="tc-rule-desc" data-i18n="rule5">सभी Eligible Entries में से Winners का चयन <strong>Lucky Draw</strong> के माध्यम से किया जाएगा।</div>
+                                    </li>
+                                    <li class="tc-list-card">
+                                        <div class="tc-badge-num">6</div>
+                                        <div class="tc-rule-desc" data-i18n="rule6">Winner घोषित करने से पहले Entry और Participant Details Verify की जाएंगी।</div>
+                                    </li>
+                                    <li class="tc-list-card">
+                                        <div class="tc-badge-num">7</div>
+                                        <div class="tc-rule-desc" data-i18n="rule7">Winners से <strong>Facebook / Phone</strong> के माध्यम से संपर्क किया जाएगा।</div>
+                                    </li>
+                                    <li class="tc-list-card">
+                                        <div class="tc-badge-num">8</div>
+                                        <div class="tc-rule-desc" data-i18n="rule8">Verification के बाद Prize प्रदान किया जाएगा।</div>
+                                    </li>
+                                    <li class="tc-list-card">
+                                        <div class="tc-badge-num">9</div>
+                                        <div class="tc-rule-desc" data-i18n="rule9">Winner के Photos/Videos को उनकी सहमति से Campaign Communication में उपयोग किया जा सकता है।</div>
+                                    </li>
+                                    <li class="tc-list-card">
+                                        <div class="tc-badge-num">10</div>
+                                        <div class="tc-rule-desc" data-i18n="rule10">Campaign में भाग लेने का अर्थ है कि प्रतिभागी इन Terms & Conditions से सहमत है।</div>
+                                    </li>
+                                </ul>
+                                <div class="tc-footer-seal">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    </svg>
+                                    <span data-i18n="disclaimerFooter">Savannah Seeds India Pvt. Ltd. • All Rights Reserved</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== RECORD PAGE ===== -->
+            <section id="page-record" class="page">
+                <!-- Step 0: Camera Permission -->
+                <div id="record-step-permission" class="record-step active">
+                    <div class="permission-content">
+                        <div class="permission-icon">
+                            <div class="permission-circle">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <h2 class="permission-title" data-i18n="allowCamera">Allow Camera Access</h2>
+                        <p class="permission-desc" data-i18n="cameraDesc">Savannah Seeds needs access to your camera and microphone to record your farmer story.</p>
+                        <button id="btn-allow-camera" class="btn-primary" data-i18n="allowAccess">ALLOW ACCESS</button>
+                        <button id="btn-not-now" class="btn-secondary" data-i18n="notNow">NOT NOW</button>
+                        <p class="privacy-note" data-i18n="privacyNote">Your video is private and will only be shared with your consent.</p>
+                    </div>
+                </div>
+
+                <!-- Step 1: Recording View -->
+                <div id="record-step-camera" class="record-step">
+                    <div class="camera-view">
+                        <video id="camera-preview" autoplay playsinline muted></video>
+                        <div class="body-guide">
+                            <svg viewBox="0 0 300 500" class="body-outline">
+                                <!-- Outer rounded rectangle -->
+                                <rect x="30" y="20" width="240" height="460" rx="120" ry="120" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                                <!-- Head circle -->
+                                <circle cx="150" cy="140" r="45" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                                <!-- Body outline -->
+                                <rect x="80" y="200" width="140" height="240" rx="20" ry="20" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                                <text x="150" y="460" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="14" font-family="Inter">INSIDE LINE</text>
+                            </svg>
+                        </div>
+                        <div class="camera-controls">
+
+                            <div class="camera-control-spacer" style="width: 44px; height: 44px;"></div>
+                            <button id="btn-record" class="record-btn" aria-label="Start Recording">
+                                <div class="record-btn-inner"></div>
+                            </button>
+                            <button id="btn-switch-camera" class="switch-camera-btn" aria-label="Switch Camera">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                    <path d="M20 5h-3.17L15 3H9L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-8 13c-2.76 0-5-2.24-5-5H5l2.5-2.5L10 13H8c0 2.21 1.79 4 4 4 2.21 0 4-1.79 4-4h2c0 2.76-2.24 5-5 5zm4.5-2.5L14 13h2c0-2.21-1.79-4-4-4-2.21 0-4 1.79-4 4H6c0-2.76 2.24-5 5-5 2.76 0 5 2.24 5 5h-1.5z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+                        <div id="recording-timer" class="recording-timer hidden">
+                            <div class="rec-dot"></div>
+                            <span id="timer-display">00:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Processing -->
+                <div id="record-step-processing" class="record-step">
+                    <div class="processing-content">
+                        <div class="processing-logo">
+                            <img src="assets/Logo.png" alt="Savannah" class="processing-logo-img pulse-animation">
+                        </div>
+                        <p class="processing-text" data-i18n="processingText">Please wait. Keep this screen open.</p>
+                        <div class="processing-bar">
+                            <div class="processing-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Preview / Brand Jacketed Result -->
+                <div id="record-step-preview" class="record-step">
+                    <div class="preview-content">
+                        <div class="preview-video-container" id="preview-video-container">
+                            <!-- Canvas for brand-jacketed video will be inserted here -->
+                            <video id="preview-video" controls></video>
+                        </div>
+                        <div class="preview-actions">
+                            <button id="btn-download" class="btn-secondary" data-i18n="downloadVideo">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                DOWNLOAD MP4
+                            </button>
+                            <button id="btn-share-fb" class="btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                                <span data-i18n="shareFacebook">Share on Facebook</span>
+                            </button>
+
+                            <button id="btn-record-again" class="btn-secondary" data-i18n="recordAgain">RECORD AGAIN</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PRODUCT PAGE ===== -->
+            <section id="page-product" class="page">
+                <div class="product-content">
+                    <div class="product-image-container">
+                        <div class="product-image-bg">
+                            <img src="/Savannah_Seeds/assets/Sava%207501%20Pack%202-B-YXFJKO.png" alt="Sava 7501 Hybrid Paddy" class="product-image" id="product-main-image">
+                        </div>
+                    </div>
+
+                    <div class="product-details">
+                        <h1 class="product-name" id="product-name" data-i18n="productName">Sava 7501 — Hybrid Paddy</h1>
+                        <div class="product-divider"></div>
+                        <p class="product-desc" id="product-desc" data-i18n="productDesc">Sava 7501 is a premium hybrid paddy seed by Savannah Seeds, engineered for superior yield, disease resistance, and adaptability across diverse agro-climatic conditions. Ideal for farmers seeking consistent, high-quality harvests.</p>
+                        <a href="#" class="read-more" data-i18n="readMore">Read more...</a>
+
+                        <!-- Accordion Sections -->
+                        <div class="accordion" id="accordion-features">
+                            <button class="accordion-header" id="acc-features-btn">
+                                <span data-i18n="keyFeatures">KEY FEATURES</span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body" id="acc-features-body">
+                                <ul>
+                                    <li data-i18n="feature1">High yield potential with excellent grain quality</li>
+                                    <li data-i18n="feature2">Strong resistance to major diseases</li>
+                                    <li data-i18n="feature3">Adaptable across diverse agro-climatic zones</li>
+                                    <li data-i18n="feature4">Medium-duration variety (120–130 days)</li>
+                                    <li data-i18n="feature5">Net Weight: 3 Kg per pack</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion" id="accordion-ingredients">
+                            <button class="accordion-header" id="acc-ingredients-btn">
+                                <span data-i18n="ingredients">INGREDIENTS</span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body" id="acc-ingredients-body">
+                                <ul>
+                                    <li data-i18n="ing1">Certified F1 Hybrid Rice Seed</li>
+                                    <li data-i18n="ing2">Treated with Thiram fungicide for seed protection</li>
+                                    <li data-i18n="ing3">Germination rate: &gt;90%</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion" id="accordion-howto">
+                            <button class="accordion-header" id="acc-howto-btn">
+                                <span data-i18n="howToUse">HOW TO USE</span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body" id="acc-howto-body">
+                                <p data-i18n="howToUseDesc">Prepare a well-puddled nursery bed. Sow seeds at 15–20 kg/ha rate. Transplant 20–25 day old seedlings at 20×15 cm spacing. Maintain proper water management and apply recommended fertilizers for best results.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature Icons -->
+                        <div class="product-badges">
+                            <div class="badge-item">
+                                <div class="badge-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <polyline points="9 12 11 14 15 10"></polyline>
+                                    </svg>
+                                </div>
+                                <span data-i18n="badgeSafe">100% Safe</span>
+                            </div>
+                            <div class="badge-item">
+                                <div class="badge-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                    </svg>
+                                </div>
+                                <span data-i18n="badgeFarmer">Farmer Friendly</span>
+                            </div>
+                            <div class="badge-item">
+                                <div class="badge-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span data-i18n="badgeEasy">Easy to Grow</span>
+                            </div>
+                            <div class="badge-item">
+                                <div class="badge-icon">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                    </svg>
+                                </div>
+                                <span data-i18n="badgeNoChemical">No Harsh Chemicals</span>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Section -->
+                        <h2 class="faq-title" data-i18n="wantToKnow">Want to know more?</h2>
+
+                        <div class="accordion faq-accordion" id="faq-1">
+                            <button class="accordion-header faq-header" id="faq-1-btn">
+                                <span><strong>01.</strong> <span data-i18n="faq1q">Is it safe?</span></span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body" id="faq-1-body">
+                                <p data-i18n="faq1a">Yes, Sava 7501 is a completely safe and certified product. All seeds are tested and approved under stringent quality standards.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion faq-accordion" id="faq-2">
+                            <button class="accordion-header faq-header" id="faq-2-btn">
+                                <span><strong>02.</strong> <span data-i18n="faq2q">What is the ideal planting season?</span></span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body" id="faq-2-body">
+                                <p data-i18n="faq2a">Sava 7501 is best planted during the Kharif season (June–July). It performs well in both irrigated and rain-fed conditions.</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== NOTICE BOARD PAGE ===== -->
+            <section id="page-notice" class="page">
+                <div class="notice-content">
+                    <div class="notice-header">
+                        <div class="notice-icon">🎉</div>
+                        <h2 data-i18n="noticeTitle">Lucky Draw Winners</h2>
+                        <p data-i18n="noticeSubtitle">Weekly Announcements</p>
+                    </div>
+                    
+                    <div class="notice-board">
+                        <div class="notice-card highlight">
+                            <div class="notice-date" data-i18n="week4">Week 4 - Oct 2026</div>
+                            <div class="notice-winner">
+                                <div class="winner-avatar">🏆</div>
+                                <div class="winner-info">
+                                    <h3 data-i18n="nameGurpreet">Gurpreet Singh</h3>
+                                    <p data-i18n="locLudhiana">Ludhiana, Punjab</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="notice-card">
+                            <div class="notice-date" data-i18n="week3">Week 3 - Oct 2026</div>
+                            <div class="notice-winner">
+                                <div class="winner-avatar">✨</div>
+                                <div class="winner-info">
+                                    <h3 data-i18n="nameRajesh">Rajesh Kumar</h3>
+                                    <p data-i18n="locKarnal">Karnal, Haryana</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="notice-card">
+                            <div class="notice-date" data-i18n="week2">Week 2 - Sep 2026</div>
+                            <div class="notice-winner">
+                                <div class="winner-avatar">✨</div>
+                                <div class="winner-info">
+                                    <h3 data-i18n="nameAmandeep">Amandeep Kaur</h3>
+                                    <p data-i18n="locPatiala">Patiala, Punjab</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Floating Badge Button -->
+        <button id="badge-btn" class="badge-floating-btn" aria-label="Savannah Badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                <rect x="2" y="7" width="20" height="5"></rect>
+                <line x1="12" y1="22" x2="12" y2="7"></line>
+                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+            </svg>
+        </button>
+
+        <!-- Bottom Navigation -->
+        <nav id="bottom-nav" class="bottom-nav">
+            <div class="nav-pill">
+                <button id="nav-home" class="nav-item" data-page="home" aria-label="Home">
+                    <div class="nav-icon-wrapper">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                        </svg>
+                    </div>
+                    <span class="nav-label" data-i18n="navHome">HOME</span>
+                </button>
+                <button id="nav-record" class="nav-item active" data-page="record" aria-label="Record">
+                    <div class="nav-icon-wrapper active-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                    </div>
+                    <span class="nav-label" data-i18n="navRecord">RECORD</span>
+                </button>
+                <button id="nav-product" class="nav-item" data-page="product" aria-label="Product">
+                    <div class="nav-icon-wrapper">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </div>
+                    <span class="nav-label" data-i18n="navProduct">PRODUCT</span>
+                </button>
+            </div>
+        </nav>
+        <!-- Farmer Video Modal -->
+        <div id="farmer-video-modal" class="farmer-modal-backdrop" aria-hidden="true">
+            <div class="farmer-modal-dialog">
+                <button id="farmer-modal-close" class="farmer-modal-close-btn" aria-label="Close video">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="farmer-modal-video-wrapper">
+                    <video id="farmer-modal-player" controls playsinline preload="metadata">
+                        <source src="/Savannah_Seeds/assets/banner_video-C5Mltsn-.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="farmer-modal-footer">
+                    <div class="farmer-modal-header-row">
+                        <div>
+                            <h3 id="farmer-modal-name" class="farmer-modal-title">Gurpreet Singh</h3>
+                            <p id="farmer-modal-loc" class="farmer-modal-subtitle">Ludhiana, Punjab • Sava 7501</p>
+                        </div>
+                        <div id="farmer-modal-yield" class="yield-badge">+25% Yield</div>
+                    </div>
+                    <div class="star-rating">★★★★★</div>
+                    <p id="farmer-modal-quote" class="farmer-modal-quote">"Sava 7501 gave me 32 quintals per acre. The tillering and disease resistance against blast was phenomenal!"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/mp4-muxer@5.1.3/build/mp4-muxer.min.js"></script>
+    <script src="assets/jackets-base64.js"></script>
+</body>
+</html>

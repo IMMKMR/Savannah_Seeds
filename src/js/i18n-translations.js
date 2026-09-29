@@ -97,6 +97,7 @@ window.translations = {
         week2: 'Week 2 - Sep 2026',
         nameAmandeep: 'Amandeep Kaur',
         locPatiala: 'Patiala, Punjab',
+        bannerText: 'UPAJ dikhao, Inaam Pao!',
     },
     hi: {
         createVideo: 'अपना ब्रांडेड किसान वीडियो बनाएं',
@@ -195,6 +196,7 @@ window.translations = {
         week2: 'सप्ताह 2 - सितंबर 2026',
         nameAmandeep: 'अमनदीप कौर',
         locPatiala: 'पटियाला, पंजाब',
+        bannerText: 'उपज दिखाओ, इनाम पाओ!',
     },
     pa: {
         createVideo: 'ਆਪਣਾ ਬ੍ਰਾਂਡਿਡ ਕਿਸਾਨ ਵੀਡੀਓ ਬਣਾਓ',
@@ -293,5 +295,6 @@ window.translations = {
         week2: 'ਹਫ਼ਤਾ 2 - ਸਤੰਬਰ 2026',
         nameAmandeep: 'ਅਮਨਦੀਪ ਕੌਰ',
         locPatiala: 'ਪਟਿਆਲਾ, ਪੰਜਾਬ',
+        bannerText: 'ਉਪਜ ਦਿਖਾਓ, ਇਨਾਮ ਪਾਓ!',
     }
 };
