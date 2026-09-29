@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/Savannah_Seeds/assets/Logo-Bj-861Ko.png">
     
-  <script type="module" crossorigin src="/Savannah_Seeds/assets/index-BA0YlAcM.js"></script>
-  <link rel="stylesheet" crossorigin href="/Savannah_Seeds/assets/index-DLw4hult.css">
+  <script type="module" crossorigin src="/Savannah_Seeds/assets/index-DPb7t0sq.js"></script>
+  <link rel="stylesheet" crossorigin href="/Savannah_Seeds/assets/index-By35FMqN.css">
 </head>
 <body>
     <!-- Splash Screen -->
@@ -611,7 +611,14 @@
                         </div>
                         <div class="camera-controls">
 
-                            <div class="camera-control-spacer" style="width: 44px; height: 44px;"></div>
+                            <button id="btn-upload-video" class="upload-btn" aria-label="Upload Video">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </button>
+                            <input type="file" id="upload-video-input" accept="video/mp4,video/x-m4v,video/*" style="display: none;">
                             <button id="btn-record" class="record-btn" aria-label="Start Recording">
                                 <div class="record-btn-inner"></div>
                             </button>
