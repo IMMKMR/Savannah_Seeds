@@ -2953,12 +2953,13 @@ body {
 
 /* ── Registration Modal ── */
 .registration-modal {
-    position: fixed;
+    position: absolute;
     inset: 0;
-    z-index: 10000;
+    z-index: 90;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 60px; /* Space for the header */
     background: linear-gradient(145deg, rgba(25, 78, 68, 0.95), rgba(15, 58, 50, 0.95));
     backdrop-filter: blur(8px);
     transition: var(--transition-smooth);

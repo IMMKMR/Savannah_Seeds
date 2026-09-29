@@ -1,0 +1,48 @@
+/* Testimonials Indicators */
+.testimonials-indicators {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.testimonials-nav-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(25, 78, 68, 0.08);
+    border: 1px solid rgba(25, 78, 68, 0.2);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    padding: 0;
+}
+
+.testimonials-nav-btn:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+.testimonials-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.testimonial-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(25, 78, 68, 0.25);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonial-dot.active {
+    width: 22px;
+    background: var(--color-primary);
+}

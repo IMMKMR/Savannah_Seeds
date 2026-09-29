@@ -1,0 +1,22 @@
+/* Responsive Fine-Tuning */
+@media (max-height: 700px) {
+    .hero-banner {
+        height: 220px;
+    }
+    .hero-pack {
+        height: 160px;
+    }
+    .permission-circle {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+@media (max-height: 600px) {
+    .hero-banner {
+        height: 180px;
+    }
+    .hero-pack {
+        height: 130px;
+    }
+}

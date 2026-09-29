@@ -1,0 +1,36 @@
+/* Design Tokens */
+:root {
+    --color-primary: #194E44;
+    --color-primary-light: #1E6B5C;
+    --color-primary-dark: #0F3A32;
+    --color-accent: #C8A96E;
+    --color-accent-gold: #D4A843;
+    --color-accent-light: #E8D5A8;
+    --color-maroon: #6B1D3A;
+    --color-maroon-dark: #4A1428;
+    --color-bg: #FAFBF7;
+    --color-bg-warm: #F5F0E8;
+    --color-card: #FFFFFF;
+    --color-text: #1A1A1A;
+    --color-text-secondary: #5A5A5A;
+    --color-text-muted: #8A8A8A;
+    --color-border: #E8E5DE;
+    --color-success: #2E7D32;
+    --color-danger: #C62828;
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-pill: 9999px;
+    --shadow-sm: 0 4px 16px rgba(25, 78, 68, 0.05);
+    --shadow-md: 0 12px 32px rgba(25, 78, 68, 0.08);
+    --shadow-lg: 0 20px 48px rgba(25, 78, 68, 0.12);
+    --shadow-glow: 0 0 30px rgba(200, 169, 110, 0.3);
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --nav-height: 80px;
+    --header-height: 56px;
+}

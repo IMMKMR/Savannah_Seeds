@@ -1,0 +1,97 @@
+<!-- ===== RECORD PAGE ===== -->
+            <section id="page-record" class="page">
+                <!-- Step 0: Camera Permission -->
+                <div id="record-step-permission" class="record-step active">
+                    <div class="permission-content">
+                        <div class="permission-icon">
+                            <div class="permission-circle">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#194E44" stroke-width="1.5">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <h2 class="permission-title" data-i18n="allowCamera">Allow Camera Access</h2>
+                        <p class="permission-desc" data-i18n="cameraDesc">Savannah Seeds needs access to your camera and microphone to record your farmer story.</p>
+                        <button id="btn-allow-camera" class="btn-primary" data-i18n="allowAccess">ALLOW ACCESS</button>
+                        <button id="btn-not-now" class="btn-secondary" data-i18n="notNow">NOT NOW</button>
+                        <p class="privacy-note" data-i18n="privacyNote">Your video is private and will only be shared with your consent.</p>
+                    </div>
+                </div>
+
+                <!-- Step 1: Recording View -->
+                <div id="record-step-camera" class="record-step">
+                    <div class="camera-view">
+                        <video id="camera-preview" autoplay playsinline muted></video>
+                        <div class="body-guide">
+                            <svg viewBox="0 0 300 500" class="body-outline">
+                                <!-- Outer rounded rectangle -->
+                                <rect x="30" y="20" width="240" height="460" rx="120" ry="120" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                                <!-- Head circle -->
+                                <circle cx="150" cy="140" r="45" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                                <!-- Body outline -->
+                                <rect x="80" y="200" width="140" height="240" rx="20" ry="20" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                                <text x="150" y="460" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="14" font-family="Inter">INSIDE LINE</text>
+                            </svg>
+                        </div>
+                        <div class="camera-controls">
+
+                            <div class="camera-control-spacer" style="width: 44px; height: 44px;"></div>
+                            <button id="btn-record" class="record-btn" aria-label="Start Recording">
+                                <div class="record-btn-inner"></div>
+                            </button>
+                            <button id="btn-switch-camera" class="switch-camera-btn" aria-label="Switch Camera">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                    <path d="M20 5h-3.17L15 3H9L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-8 13c-2.76 0-5-2.24-5-5H5l2.5-2.5L10 13H8c0 2.21 1.79 4 4 4 2.21 0 4-1.79 4-4h2c0 2.76-2.24 5-5 5zm4.5-2.5L14 13h2c0-2.21-1.79-4-4-4-2.21 0-4 1.79-4 4H6c0-2.76 2.24-5 5-5 2.76 0 5 2.24 5 5h-1.5z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+                        <div id="recording-timer" class="recording-timer hidden">
+                            <div class="rec-dot"></div>
+                            <span id="timer-display">00:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Processing -->
+                <div id="record-step-processing" class="record-step">
+                    <div class="processing-content">
+                        <div class="processing-logo">
+                            <img src="assets/Logo.png" alt="Savannah" class="processing-logo-img pulse-animation">
+                        </div>
+                        <p class="processing-text" data-i18n="processingText">Please wait. Keep this screen open.</p>
+                        <div class="processing-bar">
+                            <div class="processing-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Preview / Brand Jacketed Result -->
+                <div id="record-step-preview" class="record-step">
+                    <div class="preview-content">
+                        <div class="preview-video-container" id="preview-video-container">
+                            <!-- Canvas for brand-jacketed video will be inserted here -->
+                            <video id="preview-video" controls></video>
+                        </div>
+                        <div class="preview-actions">
+                            <button id="btn-download" class="btn-secondary" data-i18n="downloadVideo">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                DOWNLOAD MP4
+                            </button>
+                            <button id="btn-share-fb" class="btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                                <span data-i18n="shareFacebook">Share on Facebook</span>
+                            </button>
+
+                            <button id="btn-record-again" class="btn-secondary" data-i18n="recordAgain">RECORD AGAIN</button>
+                        </div>
+                    </div>
+                </div>
+            </section>

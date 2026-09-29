@@ -1,0 +1,52 @@
+/* BANNER CAROUSEL */
+.banner-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    width: 100%;
+}
+
+.banner-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.banner-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 320px; /* Fixed height to prevent stretching */
+    position: relative;
+    line-height: 0;
+}
+
+.banner-slide img,
+.banner-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-banner-video {
+    width: 100%;
+    height: 100%;
+}
+
+.banner-slide img.floating-packshot {
+    position: absolute;
+    bottom: 25px; /* Sits just above the green wave */
+    right: 20px;
+    width: 100px; /* Much smaller size */
+    height: auto;
+    object-fit: contain;
+    z-index: 10;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4));
+    animation: floatingPackshot 4s ease-in-out infinite;
+    pointer-events: none; /* So it doesn't block video clicks */
+}
+
+@keyframes floatingPackshot {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}

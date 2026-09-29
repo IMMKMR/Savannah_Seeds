@@ -1,0 +1,98 @@
+/* Brand Jacket Selection UI */
+.jacket-selector-container {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 0 16px;
+}
+
+.jacket-selector-label {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+    font-family: var(--font-primary);
+}
+
+.jacket-options-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.jacket-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.jacket-img-wrapper {
+    width: 100%;
+    aspect-ratio: 9/16;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    position: relative;
+    border: 3px solid transparent;
+    background: #f0f0f0;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+}
+
+.jacket-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.jacket-check-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: var(--transition-bounce);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.jacket-label {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    transition: color 0.2s ease;
+}
+
+/* Hover and Selected States */
+.jacket-option:hover .jacket-img-wrapper {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.jacket-option.selected .jacket-img-wrapper {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 24px rgba(25, 78, 68, 0.2);
+}
+
+.jacket-option.selected .jacket-img-wrapper img {
+    transform: scale(1.05);
+}
+
+.jacket-option.selected .jacket-check-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.jacket-option.selected .jacket-label {
+    color: var(--color-primary);
+    font-weight: 700;
+}

@@ -1,0 +1,131 @@
+/* Home Card Inner Layout */
+.card-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.card-icon-circle {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    background: rgba(25, 78, 68, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.card-icon-circle.green-icon {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.card-text {
+    flex: 1;
+    text-align: left;
+}
+
+.card-text h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 2px;
+}
+
+.card-text p {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.green-card-text h3 {
+    color: white;
+}
+
+.green-card-text p {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.card-arrow {
+    opacity: 0.4;
+    transition: var(--transition-fast);
+}
+
+.home-card-white:hover .card-arrow,
+.home-card-green:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+.home-card-white:hover .card-icon-circle {
+    background: rgba(25, 78, 68, 0.15);
+    transform: scale(1.05);
+}
+
+.home-card-green:hover .card-icon-circle {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+.home-card-white {
+    background: white;
+    border-radius: var(--radius-lg);
+    height: 100px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-card-white:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.home-card-white:active {
+    transform: scale(0.97);
+}
+
+.home-cta-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.white-text {
+    color: white;
+}
+
+.home-bottom-section {
+    background: white;
+    padding: 24px;
+    text-align: center;
+}
+
+.green-text {
+    color: var(--color-primary);
+    margin-bottom: 16px;
+}
+
+.home-card-green {
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+    border-radius: var(--radius-lg);
+    height: 100px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-card-green:active {
+    transform: scale(0.97);
+}

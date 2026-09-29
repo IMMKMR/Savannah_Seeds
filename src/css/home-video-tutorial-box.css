@@ -1,0 +1,77 @@
+/* Home Video Tutorial Box */
+.home-video-box {
+    background: linear-gradient(145deg, var(--color-primary-dark), var(--color-primary));
+    border-radius: var(--radius-lg);
+    height: 180px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(25, 78, 68, 0.2);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(25, 78, 68, 0.15);
+}
+
+.home-video-box:hover {
+    box-shadow: 0 12px 32px rgba(25, 78, 68, 0.3);
+    transform: translateY(-2px);
+}
+
+.tutorial-video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    border-radius: var(--radius-lg);
+}
+
+.home-video-box.is-playing .tutorial-video-element {
+    display: block;
+}
+
+.home-video-box.is-playing .video-box-overlay {
+    display: none;
+}
+
+.video-box-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, transparent 70%);
+}
+
+.video-play-btn-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.home-video-box:hover .video-play-btn-circle {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.video-box-label {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}

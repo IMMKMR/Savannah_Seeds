@@ -1,0 +1,54 @@
+/* Carousel Indicators & Nav */
+.steps-indicators {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding-bottom: 4px;
+}
+
+.steps-nav-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    padding: 0;
+}
+
+.steps-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.08);
+}
+
+.steps-nav-btn:active {
+    transform: scale(0.92);
+}
+
+.steps-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.step-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-dot.active {
+    width: 22px;
+    background: white;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}

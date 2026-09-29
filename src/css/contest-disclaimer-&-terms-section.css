@@ -1,0 +1,294 @@
+/* Contest Disclaimer & Terms Section */
+.contest-disclaimer-card {
+    background: #FFFFFF;
+    border-radius: 18px;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    margin: 28px 16px 24px;
+    box-shadow: 0 10px 40px rgba(25, 78, 68, 0.15);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.contest-disclaimer-card::after { display: none; }
+
+.tc-card-header {
+    background: #194E44;
+    padding: 24px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 0;
+}
+
+.tc-shield-badge {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tc-shield-badge svg {
+    stroke: #D4A843;
+}
+
+.tc-title-block {
+    flex: 1;
+}
+
+.tc-main-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0 0 8px 0;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.tc-campaign-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #0D302A;
+    border: 1px solid #236B5D;
+    color: #D4A843;
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.tc-sparkle {
+    font-size: 0.85rem;
+}
+
+/* 3-Step Flow */
+.tc-steps-flow {
+    padding: 20px 20px 8px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 0;
+}
+
+.tc-flow-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #E8F0EA;
+    border-radius: 0;
+    padding: 16px 4px;
+    transition: none;
+}
+.tc-flow-step:last-child {
+    border-bottom: none;
+}
+
+.tc-flow-step:hover {
+    transform: none;
+    background: transparent;
+}
+
+.tc-flow-step.highlight-step {
+    background: transparent;
+    border-color: #E8F0EA;
+}
+
+.tc-flow-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tc-flow-icon svg {
+    stroke: #194E44;
+}
+.tc-flow-icon.fb-accent { background: transparent; }
+.tc-flow-icon.gift-accent { background: transparent; }
+
+.tc-flow-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.tc-flow-text strong {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #194E44;
+}
+
+.tc-flow-text span {
+    font-size: 0.8rem;
+    color: #4A5D54;
+    font-weight: 500;
+}
+
+.tc-flow-text .tag-highlight {
+    color: #D4A843 !important;
+    font-weight: 800;
+}
+
+/* Accordion */
+.tc-accordion-wrapper {
+    border-top: 6px solid #F0F4F2;
+    padding: 16px 20px 24px;
+    background: #FFFFFF;
+}
+
+.tc-toggle-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #E8F0EA;
+    border-radius: 0;
+    padding: 12px 0 16px 0;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #194E44;
+    cursor: pointer;
+    transition: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.tc-toggle-btn:hover {
+    background: transparent;
+    border-color: #D4A843;
+}
+
+.tc-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tc-chevron-icon {
+    transition: transform 0.3s ease;
+    color: #194E44;
+}
+
+.tc-toggle-btn.expanded .tc-chevron-icon {
+    transform: rotate(180deg);
+}
+
+.tc-content-panel {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 16px 0 0;
+    margin-top: 0;
+    animation: fadeInSlide 0.25s ease;
+}
+
+.tc-content-panel.hidden {
+    display: none;
+}
+
+/* Clean 10 Rules List */
+.tc-clean-list {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.tc-list-card {
+    list-style: none !important;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed #E8F0EA;
+    border-radius: 0;
+    transition: none;
+}
+.tc-list-card:last-child {
+    border-bottom: none;
+}
+
+.tc-list-card:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+.tc-list-card.tc-card-gold {
+    background: transparent;
+    border-color: #E8F0EA;
+    box-shadow: none;
+}
+
+.tc-badge-num {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: auto;
+    height: auto;
+    min-width: 24px;
+    border-radius: 0;
+    background: transparent;
+    color: #D4A843;
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-top: 0;
+    flex-shrink: 0;
+}
+.tc-badge-num::after {
+    content: '.';
+}
+
+.tc-gold-num {
+    background: transparent;
+    color: #D4A843;
+}
+
+.tc-rule-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #2C3E50;
+    flex: 1;
+    text-align: left;
+    font-weight: 500;
+}
+
+.tc-rule-desc strong {
+    color: #194E44;
+    font-weight: 800;
+}
+
+.tc-footer-seal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px dashed #E8F0EA;
+    color: #8E9C95;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+}

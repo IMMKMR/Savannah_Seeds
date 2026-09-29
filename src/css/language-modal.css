@@ -1,0 +1,73 @@
+/* Language Modal */
+.lang-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.lang-modal.hidden {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.lang-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.lang-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    padding: 28px 24px 40px;
+    transform: translateY(0);
+    transition: var(--transition-bounce);
+    z-index: 1;
+}
+
+.lang-modal.hidden .lang-modal-content {
+    transform: translateY(100%);
+}
+
+.lang-modal-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+}
+
+.lang-option {
+    display: block;
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: white;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-align: left;
+}
+
+.lang-option:hover {
+    border-color: var(--color-primary);
+    background: rgba(25, 78, 68, 0.04);
+}
+
+.lang-option.active {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: white;
+}

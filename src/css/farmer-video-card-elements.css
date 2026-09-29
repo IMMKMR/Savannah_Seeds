@@ -1,0 +1,218 @@
+/* Farmer Video Card Elements */
+.farmer-video-thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9/16;
+    height: auto;
+    max-height: 420px;
+    border-radius: calc(var(--radius-lg) - 4px);
+    overflow: hidden;
+    background: #0E2922;
+    cursor: pointer;
+}
+
+.farmer-video-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.farmer-video-thumb-wrap:hover .farmer-video-poster {
+    transform: scale(1.05);
+}
+
+.farmer-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.farmer-play-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(25, 78, 68, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.farmer-video-thumb-wrap:hover .farmer-play-btn {
+    transform: scale(1.12);
+    background: #D4A843;
+}
+
+.video-duration-tag {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.yield-badge-floating {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #D4A843;
+    color: #194E44;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    z-index: 2;
+}
+
+.video-live-pill {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+    color: #FFFFFF;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 2;
+}
+
+.pulse-red-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #EF4444;
+    box-shadow: 0 0 6px #EF4444;
+    animation: pulseRed 1.8s infinite;
+}
+
+@keyframes pulseRed {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+.farmer-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.testimonial-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 2px;
+}
+
+.farmer-avatar-badge {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background: rgba(25, 78, 68, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+}
+
+.farmer-info {
+    flex: 1;
+}
+
+.farmer-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.farmer-loc {
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+}
+
+.yield-badge {
+    background: rgba(212, 168, 67, 0.18);
+    color: #8C6A15;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.star-rating {
+    color: #F59E0B;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.testimonial-quote {
+    font-size: 0.8rem;
+    color: #333333;
+    line-height: 1.45;
+    margin: 0;
+    font-style: italic;
+}
+
+.testimonial-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px dashed #E2E6DC;
+    padding-top: 8px;
+    margin-top: 2px;
+}
+
+.verified-tag {
+    color: var(--color-primary);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.watch-video-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(25, 78, 68, 0.08);
+    color: var(--color-primary);
+    border: 1px solid rgba(25, 78, 68, 0.2);
+    border-radius: 14px;
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.watch-video-btn:hover {
+    background: var(--color-primary);
+    color: white;
+}

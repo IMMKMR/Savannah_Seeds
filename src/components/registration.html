@@ -1,0 +1,23 @@
+<!-- Registration Modal -->
+        <div id="registration-modal" class="registration-modal">
+            <div class="registration-modal-content">
+                <!-- We don't need the logo here anymore since it's in the header! Actually, we can keep it or remove it. Let's keep it but maybe we don't need it if the header has it. The user said "also to hat that top bar". Let's keep the logo but remove the margin if needed, or leave it. Wait, header is visible so double logo might be weird. Let's keep it to be safe. No, header has it. Let's remove the extra logo from the modal. -->
+                <h2 data-i18n="regWelcome">Welcome</h2>
+                <p data-i18n="regDesc">Please enter your details to access the app</p>
+                <form id="registration-form">
+                    <div class="form-group">
+                        <label for="reg-name" data-i18n="regNameLabel">Name</label>
+                        <input type="text" id="reg-name" placeholder="Enter your name" data-i18n-placeholder="regNamePlaceholder" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-location" data-i18n="regLocLabel">Location</label>
+                        <input type="text" id="reg-location" placeholder="Enter your location" data-i18n-placeholder="regLocPlaceholder" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-mobile" data-i18n="regMobLabel">Mobile Number</label>
+                        <input type="tel" id="reg-mobile" placeholder="Enter your mobile number" data-i18n-placeholder="regMobPlaceholder" pattern="[0-9]{10}" title="10 digit mobile number" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="margin-top: 15px; width: 100%;" data-i18n="regBtn">Continue</button>
+                </form>
+            </div>
+        </div>

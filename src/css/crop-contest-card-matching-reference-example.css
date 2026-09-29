@@ -1,0 +1,176 @@
+/* Crop Contest Card (Matching Reference Example) */
+.crop-contest-card {
+    background: #FFFFFF;
+    border-radius: 22px;
+    padding: 22px 18px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    margin: 8px 12px 14px;
+    text-align: center;
+    position: relative;
+}
+
+.crop-contest-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #166534;
+    margin: 0 0 18px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+}
+
+.contest-steps-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    margin-bottom: 22px;
+}
+
+.contest-step-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.contest-step-item:hover {
+    transform: translateY(-2px);
+}
+
+.contest-icon-box {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.viewfinder-frame {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vf-corner {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-color: #2E7D32;
+    border-style: solid;
+    border-width: 0;
+}
+
+.vf-tl {
+    top: 0;
+    left: 0;
+    border-top-width: 2.5px;
+    border-left-width: 2.5px;
+    border-top-left-radius: 4px;
+}
+
+.vf-tr {
+    top: 0;
+    right: 0;
+    border-top-width: 2.5px;
+    border-right-width: 2.5px;
+    border-top-right-radius: 4px;
+}
+
+.vf-bl {
+    bottom: 0;
+    left: 0;
+    border-bottom-width: 2.5px;
+    border-left-width: 2.5px;
+    border-bottom-left-radius: 4px;
+}
+
+.vf-br {
+    bottom: 0;
+    right: 0;
+    border-bottom-width: 2.5px;
+    border-right-width: 2.5px;
+    border-bottom-right-radius: 4px;
+}
+
+.fb-post-mockup {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fb-share-badge {
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #16A34A;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.prize-badge-mockup {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contest-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #84CC16;
+    flex-shrink: 0;
+}
+
+.contest-step-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #1E293B;
+    line-height: 1.35;
+    text-align: center;
+    max-width: 90px;
+}
+
+.crop-contest-cta-btn {
+    width: 100%;
+    background: linear-gradient(145deg, #1E6B5C 0%, #194E44 55%, #0F3A32 100%);
+    border: none;
+    border-radius: 14px;
+    padding: 14px 20px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(25, 78, 68, 0.35);
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.02em;
+}
+
+.crop-contest-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(25, 78, 68, 0.45);
+    background: linear-gradient(145deg, #247D6C 0%, #1B584D 55%, #114238 100%);
+}
+
+.crop-contest-cta-btn:active {
+    transform: scale(0.98);
+}

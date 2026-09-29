@@ -1,0 +1,73 @@
+/* Bottom Navigation */
+.bottom-nav {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    z-index: 100;
+    background: transparent;
+    flex-shrink: 0;
+}
+
+.nav-pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--color-primary-dark);
+    border-radius: 40px 40px 0 0;
+    padding: 8px 8px 12px;
+    box-shadow: 0 -4px 30px rgba(25, 78, 68, 0.3);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 16px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.nav-item:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-item.active {
+    color: white;
+}
+
+.nav-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-bounce);
+}
+
+.nav-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-item.active .nav-icon-wrapper {
+    background: #F39C12;
+    transform: translateY(-24px);
+    box-shadow: 0 0 0 6px white;
+}
+
+.nav-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.nav-item.active .nav-label {
+    font-weight: 800;
+}
