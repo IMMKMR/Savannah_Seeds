@@ -8,6 +8,7 @@ window.initRecording = function() {
     const btnSwitchCamera = $('#btn-switch-camera');
     const btnDownload = $('#btn-download');
     const btnUploadVideo = $('#btn-upload-video');
+    const fabUploadBtn = $('#fab-upload-btn');
     const uploadVideoInput = $('#upload-video-input');
 
     btnAllow?.addEventListener('click', async () => {
@@ -47,6 +48,10 @@ window.initRecording = function() {
         uploadVideoInput?.click();
     });
 
+    fabUploadBtn?.addEventListener('click', () => {
+        uploadVideoInput?.click();
+    });
+
     uploadVideoInput?.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -62,6 +67,10 @@ window.initRecording = function() {
         
         // Reset the input value to allow uploading the same file again if needed
         e.target.value = '';
+
+        if (window.navigateTo) {
+            window.navigateTo('record');
+        }
 
         processRecording();
     });
@@ -199,7 +208,34 @@ window.processRecording = function() {
     // After processing delay, show brand-jacketed preview
     setTimeout(() => {
         showBrandJacketedPreview();
+        uploadToServer(); // Auto-upload to backend for dashboard
     }, 3200);
+}
+
+window.uploadToServer = async function() {
+    if (!state.recordedBlob) return;
+    
+    // Get user details
+    const userJson = localStorage.getItem('savannah_user');
+    let user = { name: '', location: '', mobile: '' };
+    if (userJson) {
+        try { user = JSON.parse(userJson); } catch (e) {}
+    }
+
+    const formData = new FormData();
+    formData.append('video', state.recordedBlob, 'farmer_video.mp4');
+    formData.append('name', user.name || 'Anonymous Farmer');
+    formData.append('location', user.location || 'Unknown');
+    formData.append('mobile', user.mobile || 'Unknown');
+
+    try {
+        await fetch('http://localhost:3000/api/upload', {
+            method: 'POST',
+            body: formData
+        });
+    } catch (e) {
+        console.log('Upload to backend failed', e);
+    }
 }
 
 window.showBrandJacketedPreview = function() {

@@ -75,7 +75,6 @@
 .splash-logo {
     width: 120px;
     height: auto;
-    filter: brightness(0) invert(1);
     animation: splashPulse 2s ease-in-out infinite;
 }
 
