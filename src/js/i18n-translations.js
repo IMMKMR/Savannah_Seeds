@@ -98,6 +98,8 @@ window.translations = {
         nameAmandeep: 'Amandeep Kaur',
         locPatiala: 'Patiala, Punjab',
         bannerText: 'UPAJ dikhao, Inaam Pao!',
+        fabUpload: 'Upload',
+        fabLuckyDraw: 'Lucky Draw Winners',
     },
     hi: {
         createVideo: 'अपना ब्रांडेड किसान वीडियो बनाएं',
@@ -197,6 +199,8 @@ window.translations = {
         nameAmandeep: 'अमनदीप कौर',
         locPatiala: 'पटियाला, पंजाब',
         bannerText: 'उपज दिखाओ, इनाम पाओ!',
+        fabUpload: 'अपलोड',
+        fabLuckyDraw: 'लकी ड्रॉ विजेता',
     },
     pa: {
         createVideo: 'ਆਪਣਾ ਬ੍ਰਾਂਡਿਡ ਕਿਸਾਨ ਵੀਡੀਓ ਬਣਾਓ',
@@ -296,5 +300,7 @@ window.translations = {
         nameAmandeep: 'ਅਮਨਦੀਪ ਕੌਰ',
         locPatiala: 'ਪਟਿਆਲਾ, ਪੰਜਾਬ',
         bannerText: 'ਉਪਜ ਦਿਖਾਓ, ਇਨਾਮ ਪਾਓ!',
+        fabUpload: 'ਅੱਪਲੋਡ ਕਰੋ',
+        fabLuckyDraw: 'ਲੱਕੀ ਡਰਾਅ ਜੇਤੂ',
     }
 };

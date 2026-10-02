@@ -105,6 +105,8 @@ const translations = {
         regMobLabel: 'Mobile Number',
         regMobPlaceholder: 'Enter your mobile number',
         regBtn: 'Continue',
+        fabUpload: 'Upload',
+        fabLuckyDraw: 'Lucky Draw Winners',
     },
     hi: {
         createVideo: 'अपना ब्रांडेड किसान वीडियो बनाएं',
@@ -192,6 +194,8 @@ const translations = {
         regMobLabel: 'मोबाइल नंबर',
         regMobPlaceholder: 'अपना मोबाइल नंबर दर्ज करें',
         regBtn: 'जारी रखें',
+        fabUpload: 'अपलोड',
+        fabLuckyDraw: 'लकी ड्रॉ विजेता',
     },
     pa: {
         createVideo: 'ਆਪਣਾ ਬ੍ਰਾਂਡਿਡ ਕਿਸਾਨ ਵੀਡੀਓ ਬਣਾਓ',
@@ -279,6 +283,8 @@ const translations = {
         regMobLabel: 'ਮੋਬਾਈਲ ਨੰਬਰ',
         regMobPlaceholder: 'ਆਪਣਾ ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ',
         regBtn: 'ਜਾਰੀ ਰੱਖੋ',
+        fabUpload: 'ਅੱਪਲੋਡ ਕਰੋ',
+        fabLuckyDraw: 'ਲੱਕੀ ਡਰਾਅ ਜੇਤੂ',
     }
 };
 

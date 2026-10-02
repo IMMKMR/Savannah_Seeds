@@ -5,6 +5,25 @@ window.initLanguage = function() {
     const langOptions = $$('.lang-option');
     const backdrop = langModal?.querySelector('.lang-modal-backdrop');
 
+    // Check saved language
+    const savedLang = localStorage.getItem('savannah_lang');
+    if (savedLang) {
+        state.currentLang = savedLang;
+        if (savedLang === 'hi') state.selectedJacket = 'hindi';
+        else if (savedLang === 'pa') state.selectedJacket = 'punjabi';
+        else state.selectedJacket = 'hindi';
+
+        langOptions.forEach(o => {
+            o.classList.remove('active');
+            if (o.dataset.lang === savedLang) o.classList.add('active');
+        });
+    } else {
+        // Prompt language selection after splash screen
+        setTimeout(() => {
+            if (langModal) langModal.classList.remove('hidden');
+        }, 2400); // Wait for splash screen (1.8s + 0.6s)
+    }
+
     // Apply default language on load
     applyTranslations(state.currentLang);
 
@@ -13,13 +32,19 @@ window.initLanguage = function() {
     });
 
     backdrop?.addEventListener('click', () => {
-        langModal?.classList.add('hidden');
+        // Only allow closing if a language is selected
+        if (localStorage.getItem('savannah_lang')) {
+            langModal?.classList.add('hidden');
+        }
     });
 
     langOptions.forEach(opt => {
         opt.addEventListener('click', () => {
             const lang = opt.dataset.lang;
             state.currentLang = lang;
+
+            // Save to localStorage
+            localStorage.setItem('savannah_lang', lang);
 
             // Also set jacket based on language
             if (lang === 'hi') state.selectedJacket = 'hindi';

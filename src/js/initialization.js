@@ -3,14 +3,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const splash = document.getElementById('splash-screen');
     const regModal = document.getElementById('registration-modal');
     
+    const isRegistered = localStorage.getItem('savannah_user');
+    const floatingActions = document.getElementById('floating-actions');
+
     if (splash) {
         setTimeout(() => {
             splash.classList.add('hidden');
             // Remove from DOM after transition
             setTimeout(() => {
                 splash.remove();
+                if (isRegistered && regModal) {
+                    regModal.classList.add('hidden');
+                    setTimeout(() => regModal.remove(), 600);
+                    if (floatingActions) floatingActions.classList.remove('hidden');
+                }
             }, 600);
         }, 1800);
+    } else if (isRegistered && regModal) {
+        regModal.classList.add('hidden');
+        setTimeout(() => regModal.remove(), 600);
+        if (floatingActions) floatingActions.classList.remove('hidden');
     }
 
     const regForm = document.getElementById('registration-form');
@@ -25,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             regModal.classList.add('hidden');
             setTimeout(() => regModal.remove(), 600);
+            if (floatingActions) floatingActions.classList.remove('hidden');
         });
     }
 

@@ -1,8 +1,40 @@
+/* Container for Floating Buttons */
+.floating-actions-container {
+    position: absolute;
+    bottom: 120px; /* Lifted higher to avoid overlapping the bottom nav bar */
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 999;
+    align-items: center;
+}
+
+.floating-btn-wrapper {
+    display: flex;
+    flex-direction: column; /* Label goes BELOW the icon */
+    align-items: center;
+    gap: 4px;
+    width: 64px; /* Constrain width so text wraps instead of going off-screen */
+}
+
+.floating-btn-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: #ffffff;
+    border: 1px solid rgba(25, 78, 68, 0.2);
+    padding: 4px 2px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    white-space: normal; /* Allow text to wrap */
+    text-align: center;
+    line-height: 1.1;
+    width: 100%;
+}
+
 /* Floating Badge */
 .badge-floating-btn {
-    position: absolute;
-    bottom: 120px;
-    right: 20px;
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -13,7 +45,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 90;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     transition: var(--transition-smooth);
 }
@@ -29,9 +60,6 @@
 
 /* Upload Floating Button */
 .upload-floating-btn {
-    position: absolute;
-    bottom: 180px; /* Above the badge button */
-    right: 20px;
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -42,7 +70,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 90;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     transition: var(--transition-smooth);
 }
