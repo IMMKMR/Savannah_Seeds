@@ -36,6 +36,7 @@ window.initRecording = function() {
         }
         showRecordStep('permission');
         state.recordedBlob = null;
+        state.jacketedBlob = null;
     });
 
     btnSwitchCamera?.addEventListener('click', async () => {

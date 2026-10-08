@@ -314,6 +314,20 @@ window.generateBrandJacketedVideoBlob = async function (progressCallback) {
 window.downloadBrandJacketedVideo = async function () {
     if (!state.recordedBlob) return;
 
+    const triggerDownload = (blob) => {
+        const ext = blob.type.includes('mp4') ? 'mp4' : 'webm';
+        downloadBlob(blob, `Savannah-Farmer-Video-${Date.now()}.${ext}`);
+    };
+
+    // Reuse the video already encoded during processing (same file that was
+    // uploaded to Drive) — no need to encode it a second time.
+    const alreadyEncoded = state.jacketedBlob && state.jacketedBlob !== state.recordedBlob;
+    if (alreadyEncoded) {
+        triggerDownload(state.jacketedBlob);
+        return;
+    }
+
+    // Fallback: encoding didn't happen / failed earlier — encode now and cache it
     setDownloadButtonState('Preparing...', true);
 
     try {
@@ -322,9 +336,9 @@ window.downloadBrandJacketedVideo = async function () {
         });
 
         if (blob) {
+            if (blob !== state.recordedBlob) state.jacketedBlob = blob;
             setDownloadButtonState('Downloading...', true);
-            const ext = blob.type.includes('mp4') ? 'mp4' : 'webm';
-            downloadBlob(blob, `Savannah-Farmer-Video-${Date.now()}.${ext}`);
+            triggerDownload(blob);
         }
     } finally {
         setDownloadButtonState('DOWNLOAD MP4', false);
