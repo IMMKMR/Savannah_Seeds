@@ -71,8 +71,7 @@ const openFarmerModal = (el) => {
     if (farmerModalYield) farmerModalYield.textContent = el.dataset.yield;
     if (farmerModalQuote) farmerModalQuote.textContent = el.dataset.quote;
     if (farmerModalPlayer) {
-        farmerModalPlayer.src = el.dataset.video;
-        farmerModalPlayer.play().catch(e => console.log('Autoplay prevented', e));
+        farmerModalPlayer.src = el.dataset.video + "?autoplay=1";
     }
 
     if (farmerModal) {
@@ -94,7 +93,7 @@ if (farmerModalClose && farmerModal) {
     farmerModalClose.addEventListener('click', () => {
         farmerModal.classList.remove('open');
         farmerModal.setAttribute('aria-hidden', 'true');
-        if (farmerModalPlayer) farmerModalPlayer.pause();
+        if (farmerModalPlayer) farmerModalPlayer.src = "";
     });
 }
 
