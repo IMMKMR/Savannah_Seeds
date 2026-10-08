@@ -1,5 +1,5 @@
 // Subscribe
-window.initSubscribe = function() {
+window.initSubscribe = function () {
     const btn = $('#subscribe-btn');
     const input = $('#subscribe-email');
 
@@ -43,7 +43,7 @@ if (testimonialsTrack && btnTestimonialsPrev && btnTestimonialsNext) {
     testimonialsTrack.addEventListener('scroll', () => {
         updateDots(testimonialsTrack.scrollLeft);
     });
-    
+
     // Initial dot setup
     testimonialDots.forEach(dot => {
         dot.addEventListener('click', (e) => {
@@ -66,16 +66,16 @@ const farmerModalQuote = document.getElementById('farmer-modal-quote');
 const farmerVideoCards = document.querySelectorAll('.farmer-video-thumb-wrap');
 
 const openFarmerModal = (el) => {
-    if(farmerModalName) farmerModalName.textContent = el.dataset.name;
-    if(farmerModalLoc) farmerModalLoc.textContent = el.dataset.loc;
-    if(farmerModalYield) farmerModalYield.textContent = el.dataset.yield;
-    if(farmerModalQuote) farmerModalQuote.textContent = el.dataset.quote;
-    if(farmerModalPlayer) {
+    if (farmerModalName) farmerModalName.textContent = el.dataset.name;
+    if (farmerModalLoc) farmerModalLoc.textContent = el.dataset.loc;
+    if (farmerModalYield) farmerModalYield.textContent = el.dataset.yield;
+    if (farmerModalQuote) farmerModalQuote.textContent = el.dataset.quote;
+    if (farmerModalPlayer) {
         farmerModalPlayer.src = el.dataset.video;
         farmerModalPlayer.play().catch(e => console.log('Autoplay prevented', e));
     }
-    
-    if(farmerModal) {
+
+    if (farmerModal) {
         farmerModal.classList.add('open');
         farmerModal.setAttribute('aria-hidden', 'false');
     }
@@ -94,7 +94,7 @@ if (farmerModalClose && farmerModal) {
     farmerModalClose.addEventListener('click', () => {
         farmerModal.classList.remove('open');
         farmerModal.setAttribute('aria-hidden', 'true');
-        if(farmerModalPlayer) farmerModalPlayer.pause();
+        if (farmerModalPlayer) farmerModalPlayer.pause();
     });
 }
 
@@ -107,7 +107,7 @@ const disclaimerContent = document.getElementById('disclaimer-content');
 if (disclaimerToggleBtn && disclaimerContent) {
     disclaimerToggleBtn.addEventListener('click', () => {
         const isExpanded = disclaimerToggleBtn.getAttribute('aria-expanded') === 'true';
-        
+
         if (isExpanded) {
             disclaimerToggleBtn.setAttribute('aria-expanded', 'false');
             disclaimerToggleBtn.classList.remove('expanded');
@@ -140,8 +140,8 @@ if (contestRecordBtn && navRecordBtn) {
 const btnShareFb = document.getElementById('btn-share-fb');
 if (btnShareFb) {
     btnShareFb.addEventListener('click', async () => {
-        const text = '#UpajDikhaoInaamPao #upajkadhurandar';
-        
+        const text = '#UpajKaDhurandhar #UpajDekhaoPechaanBanao';
+
         if (!state.recordedBlob) return;
 
         // Show loading state on button
@@ -159,7 +159,7 @@ if (btnShareFb) {
                 try {
                     const ext = blobToShare.type.includes('mp4') ? 'mp4' : 'webm';
                     const file = new File([blobToShare], `Savannah-Farmer-Video-${Date.now()}.${ext}`, { type: blobToShare.type });
-                    
+
                     if (navigator.canShare({ files: [file] })) {
                         await navigator.share({
                             title: 'Savannah Seeds Contest',
@@ -188,11 +188,11 @@ if (btnShareFb) {
                 window.URL.revokeObjectURL(url);
                 document.body.removeChild(a);
             }, 100);
-            
+
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(text).catch(e => console.warn('Clipboard failed:', e));
             }
-            
+
             window.open('https://www.facebook.com/', '_blank');
         } catch (err) {
             console.error("Share error:", err);
@@ -203,4 +203,4 @@ if (btnShareFb) {
         }
     });
 }
-
+
