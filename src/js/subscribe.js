@@ -139,7 +139,7 @@ if (contestRecordBtn && navRecordBtn) {
 const btnShareFb = document.getElementById('btn-share-fb');
 if (btnShareFb) {
     btnShareFb.addEventListener('click', async () => {
-        const text = '#UpajKaDhurandhar #UpajDekhaoPechaanBanao';
+        const text = '#UpajKaDhurandhar #UpajDekhaoPechaanBanao @SavannahSeeds';
 
         if (!state.recordedBlob) return;
 
