@@ -140,39 +140,44 @@ if (contestRecordBtn && navRecordBtn) {
 const btnShareFb = document.getElementById('btn-share-fb');
 if (btnShareFb) {
     btnShareFb.addEventListener('click', async () => {
-        const text = '#UpajDikhaoInaamPao';
+        const text = '#UpajDikhaoInaamPao #upajkadhurandar';
         
-        // If we have a recorded blob, try sharing it directly using the Web Share API (Files support)
-        if (navigator.share && navigator.canShare && state.recordedBlob) {
-            try {
-                // Convert Blob to File object
-                const ext = state.recordedBlob.type.includes('mp4') ? 'mp4' : 'webm';
-                const file = new File([state.recordedBlob], `Savannah-Farmer-Video-${Date.now()}.${ext}`, { type: state.recordedBlob.type });
-                
-                // Check if browser supports sharing files (Mobile/App presence check)
-                if (navigator.canShare({ files: [file] })) {
-                    await navigator.share({
-                        title: 'Savannah Seeds Contest',
-                        text: text,
-                        files: [file]
-                    });
-                    console.log('Video shared successfully');
-                    return; // Stop here if native file sharing worked
+        if (!state.recordedBlob) return;
+
+        // Show loading state on button
+        const originalHtml = btnShareFb.innerHTML;
+        btnShareFb.innerHTML = '<span class="download-spinner"></span> Preparing...';
+        btnShareFb.style.pointerEvents = 'none';
+
+        try {
+            // Use the already generated jacketed blob, or fallback
+            const blobToShare = state.jacketedBlob || state.recordedBlob;
+            if (!blobToShare) throw new Error("Could not find video");
+
+            // Try sharing directly using the Web Share API (Files support)
+            if (navigator.share && navigator.canShare) {
+                try {
+                    const ext = blobToShare.type.includes('mp4') ? 'mp4' : 'webm';
+                    const file = new File([blobToShare], `Savannah-Farmer-Video-${Date.now()}.${ext}`, { type: blobToShare.type });
+                    
+                    if (navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            title: 'Savannah Seeds Contest',
+                            text: text,
+                            files: [file]
+                        });
+                        console.log('Video shared successfully');
+                        return; // Stop here if native file sharing worked
+                    }
+                } catch (err) {
+                    console.warn('Native file share failed or cancelled:', err);
+                    if (err.name === 'AbortError') return;
                 }
-            } catch (err) {
-                console.warn('Native file share failed or cancelled:', err);
-                // If the user simply cancelled the share sheet, do not open the website
-                if (err.name === 'AbortError') {
-                    return;
-                }
-                // Other errors (like NotAllowedError on desktop Chrome) will continue to fallback
             }
-        }
-        // Fallback: Desktop or unsupported browsers (cannot pass local video to Facebook web directly)
-        // Automatically download the video for the user
-        if (state.recordedBlob) {
-            const ext = state.recordedBlob.type.includes('mp4') ? 'mp4' : 'webm';
-            const url = URL.createObjectURL(state.recordedBlob);
+
+            // Fallback: Desktop or unsupported browsers
+            const ext = blobToShare.type.includes('mp4') ? 'mp4' : 'webm';
+            const url = URL.createObjectURL(blobToShare);
             const a = document.createElement('a');
             a.style.display = 'none';
             a.href = url;
@@ -183,15 +188,19 @@ if (btnShareFb) {
                 window.URL.revokeObjectURL(url);
                 document.body.removeChild(a);
             }, 100);
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).catch(e => console.warn('Clipboard failed:', e));
+            }
+            
+            window.open('https://www.facebook.com/', '_blank');
+        } catch (err) {
+            console.error("Share error:", err);
+        } finally {
+            // Restore button state
+            btnShareFb.innerHTML = originalHtml;
+            btnShareFb.style.pointerEvents = 'auto';
         }
-        
-        // Optionally copy the hashtag to clipboard if supported
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).catch(e => console.warn('Clipboard failed:', e));
-        }
-        
-        // Open Facebook Homepage where they can easily create a post and attach the downloaded video
-        window.open('https://www.facebook.com/', '_blank');
     });
 }
 

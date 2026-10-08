@@ -23,7 +23,8 @@ function htmlIncludePlugin() {
 }
 
 export default defineConfig({
-  base: '/Savannah_Seeds/',
+  // Vercel serves from root; GitHub Pages serves from /Savannah_Seeds/
+  base: process.env.VERCEL ? '/' : '/Savannah_Seeds/',
   plugins: [htmlIncludePlugin()],
   server: {
     port: 8000

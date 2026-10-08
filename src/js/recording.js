@@ -28,6 +28,12 @@ window.initRecording = function() {
     });
 
     btnRecordAgain?.addEventListener('click', () => {
+        const previewVideo = document.getElementById('preview-video');
+        if (previewVideo) {
+            previewVideo.pause();
+            previewVideo.removeAttribute('src'); // Stop loading
+            previewVideo.load();
+        }
         showRecordStep('permission');
         state.recordedBlob = null;
     });
@@ -193,7 +199,7 @@ window.updateTimerDisplay = function() {
     if (display) display.textContent = `${mins}:${secs}`;
 }
 
-window.processRecording = function() {
+window.processRecording = async function() {
     // Show processing step
     showRecordStep('processing');
 
@@ -205,11 +211,24 @@ window.processRecording = function() {
         bar.style.animation = 'progress-fill 3s ease-in-out forwards';
     }
 
-    // After processing delay, show brand-jacketed preview
-    setTimeout(() => {
-        showBrandJacketedPreview();
-        uploadToServer(); // Auto-upload to backend for dashboard
-    }, 3200);
+    const processingText = $('.processing-text');
+    const originalText = processingText ? processingText.innerText : 'Please wait...';
+
+    if (processingText) processingText.innerText = 'Preparing video...';
+
+    try {
+        state.jacketedBlob = await window.generateBrandJacketedVideoBlob((msg) => {
+            if (processingText) processingText.innerText = msg;
+        });
+    } catch (e) {
+        console.error("Failed to generate jacketed video", e);
+        state.jacketedBlob = state.recordedBlob;
+    }
+
+    if (processingText) processingText.innerText = originalText;
+
+    showBrandJacketedPreview();
+    uploadToServer(); // Auto-upload to backend for dashboard
 }
 
 window.uploadToServer = async function() {
@@ -222,19 +241,57 @@ window.uploadToServer = async function() {
         try { user = JSON.parse(userJson); } catch (e) {}
     }
 
-    const formData = new FormData();
-    formData.append('video', state.recordedBlob, 'farmer_video.mp4');
-    formData.append('name', user.name || 'Anonymous Farmer');
-    formData.append('location', user.location || 'Unknown');
-    formData.append('mobile', user.mobile || 'Unknown');
+    const blobToUpload = state.jacketedBlob || state.recordedBlob;
+    const ext = blobToUpload.type.includes('mp4') ? 'mp4' : 'webm';
+    const filename = `farmer_video_${Date.now()}.${ext}`;
 
     try {
-        await fetch('http://localhost:3000/api/upload', {
+        console.log('Requesting Google Drive upload URL from Vercel API...');
+        const urlRes = await fetch('/api/getUploadUrl', {
             method: 'POST',
-            body: formData
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ filename, mimeType: blobToUpload.type })
         });
+        
+        if (!urlRes.ok) {
+            throw new Error('Failed to get upload URL: ' + await urlRes.text());
+        }
+        
+        const { uploadUrl } = await urlRes.json();
+
+        console.log('Uploading video directly to Google Drive...');
+        const uploadRes = await fetch(uploadUrl, {
+            method: 'PUT',
+            headers: { 'Content-Type': blobToUpload.type },
+            body: blobToUpload
+        });
+
+        if (!uploadRes.ok) {
+            throw new Error('Failed to upload video to Google Drive: ' + await uploadRes.text());
+        }
+
+        const fileData = await uploadRes.json();
+        const fileId = fileData.id;
+
+        console.log('Saving farmer details to Google Sheets...');
+        const saveRes = await fetch('/api/saveData', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                name: user.name || 'Anonymous Farmer', 
+                location: user.location || 'Unknown', 
+                mobile: user.mobile || 'Unknown', 
+                fileId 
+            })
+        });
+
+        if (!saveRes.ok) {
+            throw new Error('Failed to save data to Sheets: ' + await saveRes.text());
+        }
+
+        console.log('Successfully uploaded video and saved data!');
     } catch (e) {
-        console.log('Upload to backend failed', e);
+        console.error('Upload flow failed:', e);
     }
 }
 
@@ -246,6 +303,25 @@ window.showBrandJacketedPreview = function() {
 
     // Clear previous content
     container.innerHTML = '';
+
+    if (state.jacketedBlob && state.jacketedBlob !== state.recordedBlob) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'jacket-preview-container';
+        wrapper.style.cssText = 'position:relative;width:100%;height:100%;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;';
+
+        const video = document.createElement('video');
+        video.id = 'preview-video';
+        video.controls = true;
+        video.playsInline = true;
+        video.loop = true;
+        video.style.cssText = 'max-width:100%;max-height:100%;display:block;';
+        video.src = URL.createObjectURL(state.jacketedBlob);
+
+        wrapper.appendChild(video);
+        container.appendChild(wrapper);
+        video.play().catch(() => {});
+        return;
+    }
 
     // Determine which jacket to use based on language (from Data URIs to prevent tainting)
     const jacketSrc = state.selectedJacket === 'punjabi' ? JACKETS_BASE64.punjabi : JACKETS_BASE64.hindi;

@@ -1,5 +1,5 @@
 // MP4 Download using WebCodecs + mp4-muxer
-window.waitForSeek = function(video) {
+window.waitForSeek = function (video) {
     return new Promise((resolve) => {
         if (video.seeking) {
             video.addEventListener('seeked', resolve, { once: true });
@@ -9,7 +9,7 @@ window.waitForSeek = function(video) {
     });
 }
 
-window.loadImageAsync = function(src) {
+window.loadImageAsync = function (src) {
     return new Promise((resolve, reject) => {
         const img = new Image();
         img.onload = () => resolve(img);
@@ -18,7 +18,7 @@ window.loadImageAsync = function(src) {
     });
 }
 
-window.downloadBlob = function(blob, filename) {
+window.downloadBlob = function (blob, filename) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -29,7 +29,7 @@ window.downloadBlob = function(blob, filename) {
     setTimeout(() => URL.revokeObjectURL(url), 5000);
 }
 
-window.setDownloadButtonState = function(text, disabled) {
+window.setDownloadButtonState = function (text, disabled) {
     const btn = $('#btn-download');
     if (!btn) return;
     btn.disabled = disabled;
@@ -44,8 +44,8 @@ window.setDownloadButtonState = function(text, disabled) {
     }
 }
 
-window.downloadBrandJacketedVideo = async function() {
-    if (!state.recordedBlob) return;
+window.generateBrandJacketedVideoBlob = async function (progressCallback) {
+    if (!state.recordedBlob) return null;
 
     // Check for WebCodecs + mp4-muxer support
     const hasWebCodecs = typeof VideoEncoder !== 'undefined' && typeof VideoFrame !== 'undefined';
@@ -54,12 +54,10 @@ window.downloadBrandJacketedVideo = async function() {
     if (!hasWebCodecs || !hasMuxer) {
         // Fallback: download raw recording as-is
         console.warn('WebCodecs or mp4-muxer not available, falling back to raw download.');
-        downloadBlob(state.recordedBlob, `Savannah-Farmer-Video-${Date.now()}.webm`);
-        alert('MP4 export requires a modern browser (Chrome 94+). Downloaded as WebM instead.');
-        return;
+        return state.recordedBlob;
     }
 
-    setDownloadButtonState('Preparing...', true);
+    if (progressCallback) progressCallback('Preparing...');
 
     try {
         // 1. Load jacket image from Data URI
@@ -122,14 +120,14 @@ window.downloadBrandJacketedVideo = async function() {
 
         let duration = sourceVideo.duration;
         if (duration === Infinity || isNaN(duration)) {
-             // Fallback if browser still fails
-             duration = 5.0; // Assume 5 seconds
+            // Fallback if browser still fails
+            duration = 5.0; // Assume 5 seconds
         }
         const fps = 24;
         const totalFrames = Math.ceil(duration * fps);
         const frameDurationUs = Math.round(1_000_000 / fps);
 
-        setDownloadButtonState('Encoding 0%...', true);
+        if (progressCallback) progressCallback('Encoding 0%...');
 
         // 4. Setup mp4-muxer
         const muxerConfig = {
@@ -220,7 +218,7 @@ window.downloadBrandJacketedVideo = async function() {
 
             // Update progress
             const progress = Math.round((i / totalFrames) * 100);
-            setDownloadButtonState(`Encoding ${progress}%...`, true);
+            if (progressCallback) progressCallback(`Encoding ${progress}%...`);
 
             // Yield to UI thread periodically and prevent encoder queue overflow
             if (i % 5 === 0) {
@@ -237,7 +235,7 @@ window.downloadBrandJacketedVideo = async function() {
 
         // 7. Encode audio if available
         if (includeAudio && audioBuffer) {
-            setDownloadButtonState('Encoding audio...', true);
+            if (progressCallback) progressCallback('Encoding audio...');
 
             const numberOfChannels = Math.min(audioBuffer.numberOfChannels, 2);
             const sampleRate = audioBuffer.sampleRate;
@@ -298,42 +296,56 @@ window.downloadBrandJacketedVideo = async function() {
         // 8. Finalize and download
         muxer.finalize();
 
-        setDownloadButtonState('Downloading...', true);
+        if (progressCallback) progressCallback('Finishing...');
 
         const mp4Blob = new Blob([muxer.target.buffer], { type: 'video/mp4' });
-        downloadBlob(mp4Blob, `Savannah-Farmer-Video-${Date.now()}.mp4`);
 
         // Cleanup
         URL.revokeObjectURL(sourceVideo.src);
 
+        return mp4Blob;
+
     } catch (err) {
         console.error('MP4 export failed:', err);
-        const errMsg = err?.message || err?.toString?.() || 'Unknown error';
-        // Fallback: download raw recording
-        if (state.recordedBlob) {
-            downloadBlob(state.recordedBlob, `Savannah-Farmer-Video-${Date.now()}.webm`);
+        return state.recordedBlob;
+    }
+}
+
+window.downloadBrandJacketedVideo = async function () {
+    if (!state.recordedBlob) return;
+
+    setDownloadButtonState('Preparing...', true);
+
+    try {
+        const blob = await window.generateBrandJacketedVideoBlob((msg) => {
+            setDownloadButtonState(msg, true);
+        });
+
+        if (blob) {
+            setDownloadButtonState('Downloading...', true);
+            const ext = blob.type.includes('mp4') ? 'mp4' : 'webm';
+            downloadBlob(blob, `Savannah-Farmer-Video-${Date.now()}.${ext}`);
         }
-        alert('MP4 export encountered an error. Downloaded as WebM instead.\n\nError: ' + errMsg);
     } finally {
         setDownloadButtonState('DOWNLOAD MP4', false);
     }
 }
 
-window.addJacketSelector = function(parentContainer) {
+window.addJacketSelector = function (parentContainer) {
     // Intentionally empty.
     // The jacket is now automatically selected based on the current language
     // (Hindi jacket for Hindi, Punjabi jacket for Punjabi)
     // No manual selector UI is needed.
 }
 
-window.createJacketOption = function(jacketId, imgSrc, label) {
+window.createJacketOption = function (jacketId, imgSrc, label) {
     const opt = document.createElement('div');
     opt.className = 'jacket-option';
     opt.dataset.jacket = jacketId;
 
     const imgWrapper = document.createElement('div');
     imgWrapper.className = 'jacket-img-wrapper';
-    
+
     const img = document.createElement('img');
     img.src = imgSrc;
     img.alt = `${label} Jacket`;
