@@ -1,4 +1,4 @@
-import { google } from 'googleapis';
+import { getGoogleAuth } from './_google.js';
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -6,36 +6,41 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { filename, mimeType } = req.body;
-        
+        const { filename, mimeType } = req.body || {};
+
         if (!filename || !mimeType) {
             return res.status(400).json({ error: 'Missing filename or mimeType' });
         }
 
-        const auth = new google.auth.JWT(
-            process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-            null,
-            (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n'),
-            ['https://www.googleapis.com/auth/drive.file']
-        );
-
+        const auth = getGoogleAuth(['https://www.googleapis.com/auth/drive']);
         const { token } = await auth.getAccessToken();
 
-        const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-                'X-Upload-Content-Type': mimeType
-            },
-            body: JSON.stringify({
-                name: filename,
-                parents: [process.env.GOOGLE_DRIVE_FOLDER_ID]
-            })
-        });
+        // supportsAllDrives=true is required to upload into a Shared Drive folder
+        const response = await fetch(
+            'https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable&supportsAllDrives=true',
+            {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json; charset=UTF-8',
+                    'X-Upload-Content-Type': mimeType,
+                    // Google ties CORS of the resumable session to this Origin,
+                    // so the browser is allowed to PUT the video directly.
+                    ...(req.headers.origin ? { 'Origin': req.headers.origin } : {}),
+                },
+                body: JSON.stringify({
+                    name: filename,
+                    parents: [process.env.GOOGLE_DRIVE_FOLDER_ID],
+                }),
+            }
+        );
+
+        if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(`Drive session failed (${response.status}): ${errText}`);
+        }
 
         const uploadUrl = response.headers.get('Location');
-
         if (!uploadUrl) {
             throw new Error('Failed to obtain upload URL from Google Drive');
         }

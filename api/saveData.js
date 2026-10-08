@@ -1,4 +1,4 @@
-import { google } from 'googleapis';
+import { getGoogleAuth, google } from './_google.js';
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -6,47 +6,50 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { name, location, mobile, fileId } = req.body;
+        const { name, location, mobile, fileId } = req.body || {};
 
-        const auth = new google.auth.JWT(
-            process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-            null,
-            (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n'),
-            ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive.file']
-        );
+        if (!fileId) {
+            return res.status(400).json({ error: 'Missing fileId' });
+        }
 
-        // Optional: Make the uploaded video public so the dashboard can read it
+        const auth = getGoogleAuth([
+            'https://www.googleapis.com/auth/spreadsheets',
+            'https://www.googleapis.com/auth/drive',
+        ]);
+
         const drive = google.drive({ version: 'v3', auth });
-        await drive.permissions.create({
-            fileId: fileId,
-            requestBody: {
-                role: 'reader',
-                type: 'anyone'
-            }
-        });
-        
+
+        // Try to make the video viewable via link. Non-fatal: some Workspace
+        // policies block "anyone with link" sharing — the row should still save.
+        try {
+            await drive.permissions.create({
+                fileId,
+                supportsAllDrives: true,
+                requestBody: { role: 'reader', type: 'anyone' },
+            });
+        } catch (permErr) {
+            console.warn('Could not set public permission (continuing):', permErr.message);
+        }
+
         // Get the viewable link
         const fileData = await drive.files.get({
-            fileId: fileId,
-            fields: 'webViewLink'
+            fileId,
+            fields: 'webViewLink',
+            supportsAllDrives: true,
         });
-        const videoUrl = fileData.data.webViewLink;
+        const videoUrl = fileData.data.webViewLink || `https://drive.google.com/file/d/${fileId}/view`;
 
         // Save data to Google Sheets
         const sheets = google.sheets({ version: 'v4', auth });
-        
-        // Values to append
-        const values = [
-            [new Date().toISOString(), name, location, mobile, videoUrl]
-        ];
 
         await sheets.spreadsheets.values.append({
             spreadsheetId: process.env.GOOGLE_SHEET_ID,
-            range: 'Sheet1!A:E', // Assumes data is on "Sheet1" and uses 5 columns
+            range: 'Sheet1!A:E', // Timestamp | Name | Location | Mobile | Video URL
             valueInputOption: 'USER_ENTERED',
+            insertDataOption: 'INSERT_ROWS',
             requestBody: {
-                values: values
-            }
+                values: [[new Date().toISOString(), name, location, mobile, videoUrl]],
+            },
         });
 
         return res.status(200).json({ success: true, videoUrl });

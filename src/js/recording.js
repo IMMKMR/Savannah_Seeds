@@ -228,11 +228,11 @@ window.processRecording = async function() {
     if (processingText) processingText.innerText = originalText;
 
     showBrandJacketedPreview();
-    uploadToServer(); // Auto-upload to backend for dashboard
+    uploadToServerWithRetry(); // Auto-upload to Google Drive + Sheet in background
 }
 
-window.uploadToServer = async function() {
-    if (!state.recordedBlob) return;
+window.uploadToServerOnce = async function() {
+    if (!state.recordedBlob) return false;
     
     // Get user details
     const userJson = localStorage.getItem('savannah_user');
@@ -290,8 +290,27 @@ window.uploadToServer = async function() {
         }
 
         console.log('Successfully uploaded video and saved data!');
+        return true;
     } catch (e) {
         console.error('Upload flow failed:', e);
+        throw e;
+    }
+}
+
+// Background upload with retries (runs after encoding, never blocks the UI)
+window.uploadToServerWithRetry = async function(maxAttempts = 3) {
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+            return await window.uploadToServerOnce();
+        } catch (e) {
+            if (attempt === maxAttempts) {
+                console.error(`Upload failed after ${maxAttempts} attempts`);
+                return false;
+            }
+            const waitMs = 2000 * attempt;
+            console.warn(`Upload attempt ${attempt} failed, retrying in ${waitMs / 1000}s...`);
+            await new Promise(r => setTimeout(r, waitMs));
+        }
     }
 }
 
