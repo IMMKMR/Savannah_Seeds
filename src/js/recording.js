@@ -217,6 +217,9 @@ window.processRecording = async function() {
 
     if (processingText) processingText.innerText = 'Preparing video...';
 
+    // Wait a brief moment to ensure the Blob is fully flushed and readable by the browser
+    await new Promise(r => setTimeout(r, 500));
+
     try {
         state.jacketedBlob = await window.generateBrandJacketedVideoBlob((msg) => {
             if (processingText) processingText.innerText = msg;

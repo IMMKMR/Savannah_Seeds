@@ -3,173 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savannah Seeds — Admin Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Dashboard - Savannah Seeds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --color-primary: #194E44;
-            --color-primary-light: #1E6B5C;
-            --color-accent: #C8A96E;
-            --color-bg: #F9FAFB;
-            --color-surface: #FFFFFF;
-            --color-text: #111827;
-            --color-text-secondary: #4B5563;
-            --color-border: #E5E7EB;
+            --primary: #194E44;
+            --primary-hover: #143e36;
+            --accent: #C8A96E;
+            --bg: #F4F5F7;
+            --surface: #FFFFFF;
+            --text-main: #111827;
+            --text-muted: #6B7280;
+            --border: #E5E7EB;
+            --radius: 8px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--color-bg); color: var(--color-text); }
-
-        /* Header */
-        .header { background-color: var(--color-surface); padding: 20px 40px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
-        .header h1 { font-family: 'Playfair Display', serif; color: var(--color-primary); font-size: 1.5rem; }
-        .user-profile { display: flex; align-items: center; gap: 16px; font-size: 0.875rem; color: var(--color-text-secondary); }
-
-        /* Tabs */
-        .tabs { display: flex; gap: 24px; padding: 0 40px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
-        .tab-btn { background: none; border: none; padding: 16px 8px; font-size: 0.95rem; font-weight: 500; color: var(--color-text-secondary); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
-        .tab-btn:hover { color: var(--color-primary); }
-        .tab-btn.active { color: var(--color-primary); border-bottom-color: var(--color-primary); }
-
-        .main { padding: 40px; max-width: 1200px; margin: 0 auto; }
-        .tab-content { display: none; animation: fadeIn 0.3s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Cards */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 32px; }
-        .card { background: var(--color-surface); padding: 24px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid var(--color-border); }
-        .stat-label { font-size: 0.8rem; color: var(--color-text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: block; }
-        .stat-value { font-size: 2.25rem; font-weight: 700; color: var(--color-primary); }
-
-        /* Charts */
-        .charts-container { display: grid; grid-template-columns: 1fr; gap: 24px; }
-        .chart-card { background: var(--color-surface); padding: 24px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid var(--color-border); }
-        .chart-card h3 { margin-bottom: 20px; font-size: 1rem; color: var(--color-text); }
-        .chart-wrapper { position: relative; height: 300px; width: 100%; display: flex; justify-content: center; }
-
-        /* Toolbar */
-        .toolbar { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
-        .search-box { flex: 1; min-width: 250px; position: relative; }
-        .search-box input { width: 100%; padding: 10px 16px 10px 40px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.9rem; font-family: inherit; }
-        .search-box svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #9CA3AF; }
-        .sort-box select { padding: 10px 16px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.9rem; font-family: inherit; background: white; cursor: pointer; }
-
-        /* Table */
-        .table-card { background: var(--color-surface); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid var(--color-border); overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; text-align: left; }
-        th { background-color: #F9FAFB; padding: 16px 24px; font-size: 0.75rem; font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--color-border); }
-        td { padding: 16px 24px; border-bottom: 1px solid var(--color-border); font-size: 0.875rem; vertical-align: middle; }
-        tbody tr:hover { background-color: #F9FAFB; }
         
-        .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
-        .badge.success { background-color: #D1FAE5; color: #065F46; }
-        .badge.pending { background-color: #FEF3C7; color: #92400E; }
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            -webkit-font-smoothing: antialiased;
+        }
 
-        /* Buttons */
-        .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background-color: var(--color-primary); color: white; border: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: 0.2s; text-decoration: none; }
-        .btn:hover { background-color: var(--color-primary-light); }
-        .btn-outline { background-color: transparent; color: var(--color-primary); border: 1px solid var(--color-primary); }
-        .btn-outline:hover { background-color: #F3F4F6; }
+        /* Top Navigation */
+        .navbar {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0 32px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
 
-        video { border-radius: 8px; background: #000; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .no-data { text-align: center; padding: 40px; color: var(--color-text-secondary); }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary);
+        }
+        
+        .brand svg {
+            color: var(--accent);
+        }
 
-        /* Login Overlay */
-        #login-overlay { position: fixed; inset: 0; background: var(--color-bg); display: flex; align-items: center; justify-content: center; z-index: 1000; }
-        .login-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 400px; border: 1px solid var(--color-border); }
-        .login-box h2 { font-family: 'Playfair Display', serif; color: var(--color-primary); margin-bottom: 24px; }
-        .login-box input { width: 100%; padding: 12px; border: 1px solid var(--color-border); border-radius: 6px; margin-bottom: 16px; font-family: inherit; }
-        .login-box button { width: 100%; padding: 12px; background: var(--color-primary); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .logout-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .logout-link:hover { color: var(--text-main); }
+
+        /* Main Content Container */
+        .container {
+            padding: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Section Headers */
+        .section-header {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Top Grid (Stats + Chart) */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        @media (max-width: 900px) {
+            .overview-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Stats Blocks */
+        .stats-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stat-card .label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: 16px;
+        }
+
+        /* Chart Card */
+        .chart-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-card .label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            position: relative;
+            flex-grow: 1;
+            min-height: 180px;
+        }
+
+        /* Table Section */
+        .data-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .toolbar {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 16px;
+            background: #FAFAFA;
+        }
+
+        .search-input {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-input input {
+            width: 100%;
+            padding: 8px 12px 8px 36px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .search-input input:focus { border-color: var(--primary); }
+
+        .search-input svg {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9CA3AF;
+        }
+
+        .sort-select {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            background: white;
+            outline: none;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--surface);
+            padding: 12px 24px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: #FAFAFA; }
+
+        .farmer-info { display: flex; flex-direction: column; gap: 4px; }
+        .farmer-name { font-weight: 500; color: var(--text-main); }
+        .farmer-meta { font-size: 13px; color: var(--text-muted); display: flex; gap: 12px; }
+
+        .status-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-tag.success { background-color: #ECFDF5; color: #059669; }
+        .status-tag.pending { background-color: #FEF3C7; color: #D97706; }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        
+        .btn-link:hover { text-decoration: underline; }
+
+        video { border-radius: 6px; background: #000; display: block; object-fit: cover; }
+        .empty-state { text-align: center; padding: 48px; color: var(--text-muted); font-size: 14px; }
+
+        /* Login Screen */
+        #login-overlay {
+            position: fixed; inset: 0; background: var(--bg);
+            display: flex; align-items: center; justify-content: center; z-index: 100;
+        }
+        .login-card {
+            background: var(--surface); padding: 32px; border-radius: var(--radius);
+            border: 1px solid var(--border); width: 100%; max-width: 360px;
+        }
+        .login-card h2 { margin-bottom: 24px; font-size: 18px; font-weight: 600; }
+        .login-card input {
+            width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+            border-radius: 6px; margin-bottom: 16px; font-family: inherit; font-size: 14px;
+        }
+        .login-card button {
+            width: 100%; padding: 10px; background: var(--primary); color: white;
+            border: none; border-radius: 6px; font-weight: 500; cursor: pointer; font-size: 14px;
+        }
+        .login-card button:hover { background: var(--primary-hover); }
+        .error-text { color: #DC2626; font-size: 13px; margin-top: 12px; display: none; text-align: center; }
+
     </style>
 </head>
 <body>
 
     <div id="login-overlay">
-        <div class="login-box">
+        <div class="login-card">
             <h2>Admin Login</h2>
-            <input type="password" id="admin-password" placeholder="Enter Dashboard Password" onkeyup="if(event.key === 'Enter') attemptLogin()" />
-            <button onclick="attemptLogin()">Login</button>
-            <div id="login-error" style="color: #DC2626; margin-top: 12px; font-size: 14px; display: none;">Incorrect password</div>
+            <input type="password" id="admin-password" placeholder="Password" onkeyup="if(event.key === 'Enter') attemptLogin()" />
+            <button onclick="attemptLogin()">Continue</button>
+            <div id="login-error" class="error-text">Incorrect password</div>
         </div>
     </div>
 
-    <header class="header">
-        <h1>Savannah Seeds Admin</h1>
-        <div class="user-profile">
-            <span>Logged in as <b>Admin</b></span>
-            <button onclick="logout()" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.75rem;">Logout</button>
+    <nav class="navbar">
+        <div class="brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Savannah Admin
         </div>
-    </header>
+        <div class="nav-actions">
+            <span>Admin Session</span>
+            <a class="logout-link" onclick="logout()">Sign out</a>
+        </div>
+    </nav>
 
-    <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('overview')">Overview & Stats</button>
-        <button class="tab-btn" onclick="switchTab('data')">Farmer Data</button>
-    </div>
-
-    <main class="main">
-        <!-- Overview Tab -->
-        <div id="tab-overview" class="tab-content active">
-            <div class="stats-grid">
-                <div class="card">
-                    <span class="stat-label">Total Videos</span>
-                    <span class="stat-value" id="stat-videos">0</span>
-                </div>
-                <div class="card">
-                    <span class="stat-label">Total Farmers</span>
-                    <span class="stat-value" id="stat-farmers">0</span>
-                </div>
-                <div class="card">
-                    <span class="stat-label">Synced to Drive</span>
-                    <span class="stat-value" id="stat-synced">0</span>
-                </div>
-            </div>
-
-            <div class="charts-container">
-                <div class="chart-card">
-                    <h3>Submissions by Location</h3>
-                    <div class="chart-wrapper">
-                        <canvas id="locationChart"></canvas>
+    <div class="container">
+        
+        <div class="overview-grid">
+            <div class="stats-wrapper">
+                <div class="stat-card">
+                    <div class="label">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                        Videos Recorded
                     </div>
+                    <div class="value" id="stat-videos">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Unique Farmers
+                    </div>
+                    <div class="value" id="stat-farmers">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 12H16c-.7 2-2 3-4 3s-3.3-1-4-3H2.5"/><path d="M5.5 5.1L2 12v6c0 1.1.9 2 2 2h16a2 2 0 002-2v-6l-3.5-6.9A2 2 0 0017 5H7a2 2 0 00-1.5.1z"/></svg>
+                        Synced to Drive
+                    </div>
+                    <div class="value" id="stat-synced">-</div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="label">Location Distribution</div>
+                <div class="chart-container">
+                    <canvas id="locationChart"></canvas>
                 </div>
             </div>
         </div>
 
-        <!-- Data Tab -->
-        <div id="tab-data" class="tab-content">
+        <div class="data-section">
             <div class="toolbar">
-                <div class="search-box">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" id="search-input" placeholder="Search by name, location, or mobile..." oninput="filterAndRender()">
+                <div class="search-input">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="search-input" placeholder="Search records..." oninput="filterAndRender()">
                 </div>
-                <div class="sort-box">
-                    <select id="sort-select" onchange="filterAndRender()">
-                        <option value="newest">Sort: Newest First</option>
-                        <option value="oldest">Sort: Oldest First</option>
-                        <option value="name_asc">Sort: Name (A-Z)</option>
-                        <option value="name_desc">Sort: Name (Z-A)</option>
-                        <option value="loc_asc">Sort: Location (A-Z)</option>
-                    </select>
-                </div>
+                <select class="sort-select" id="sort-select" onchange="filterAndRender()">
+                    <option value="newest">Latest Uploads</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="name_asc">Name (A-Z)</option>
+                    <option value="loc_asc">Location (A-Z)</option>
+                </select>
             </div>
 
-            <div class="table-card">
+            <div style="overflow-x: auto;">
                 <table>
                     <thead>
                         <tr>
-                            <th>Farmer Details</th>
-                            <th>Preview</th>
-                            <th>Date Uploaded</th>
-                            <th>Drive Status</th>
-                            <th>Actions</th>
+                            <th>Video</th>
+                            <th>Farmer Profile</th>
+                            <th>Timestamp</th>
+                            <th>Status</th>
+                            <th>Link</th>
                         </tr>
                     </thead>
-                    <tbody id="table-body"></tbody>
+                    <tbody id="table-body">
+                        <!-- Data rows rendered here -->
+                    </tbody>
                 </table>
             </div>
         </div>
-    </main>
+
+    </div>
 
     <script>
         let dashboardPassword = localStorage.getItem('savannah_admin_pass') || '';
@@ -185,13 +396,6 @@
             localStorage.removeItem('savannah_admin_pass');
             dashboardPassword = '';
             document.getElementById('login-overlay').style.display = 'flex';
-        }
-
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            event.target.classList.add('active');
-            document.getElementById('tab-' + tabId).classList.add('active');
         }
 
         async function fetchVideos() {
@@ -210,7 +414,7 @@
                 globalData = await res.json();
                 updateStats(globalData);
                 renderChart(globalData);
-                filterAndRender(); // renders table
+                filterAndRender();
             } catch (err) {
                 console.error("Failed to fetch", err);
             }
@@ -224,35 +428,36 @@
 
         function renderChart(data) {
             const ctx = document.getElementById('locationChart').getContext('2d');
-            
-            // Aggregate locations
             const locCounts = {};
             data.forEach(d => {
                 const loc = d.location || 'Unknown';
                 locCounts[loc] = (locCounts[loc] || 0) + 1;
             });
 
-            const labels = Object.keys(locCounts);
-            const values = Object.values(locCounts);
-
             if (locationChartInstance) locationChartInstance.destroy();
 
             locationChartInstance = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: labels,
+                    labels: Object.keys(locCounts),
                     datasets: [{
-                        data: values,
-                        backgroundColor: ['#194E44', '#C8A96E', '#1E6B5C', '#FCD34D', '#34D399', '#6B7280'],
-                        borderWidth: 0
+                        data: Object.values(locCounts),
+                        backgroundColor: ['#194E44', '#C8A96E', '#1E6B5C', '#E5E7EB'],
+                        borderWidth: 0,
+                        hoverOffset: 4
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    cutout: '75%',
                     plugins: {
-                        legend: { position: 'right' }
-                    }
+                        legend: { 
+                            position: 'right',
+                            labels: { boxWidth: 10, usePointStyle: true, font: { family: 'Inter', size: 12 } }
+                        }
+                    },
+                    layout: { padding: 0 }
                 }
             });
         }
@@ -262,55 +467,58 @@
             const sortVal = document.getElementById('sort-select').value;
             const tbody = document.getElementById('table-body');
 
-            // Filter
             let filtered = globalData.filter(d => 
                 (d.name || '').toLowerCase().includes(query) ||
                 (d.location || '').toLowerCase().includes(query) ||
                 (d.mobile || '').includes(query)
             );
 
-            // Sort
             filtered.sort((a, b) => {
                 if (sortVal === 'newest') return new Date(b.createdAt) - new Date(a.createdAt);
                 if (sortVal === 'oldest') return new Date(a.createdAt) - new Date(b.createdAt);
                 if (sortVal === 'name_asc') return (a.name || '').localeCompare(b.name || '');
-                if (sortVal === 'name_desc') return (b.name || '').localeCompare(a.name || '');
                 if (sortVal === 'loc_asc') return (a.location || '').localeCompare(b.location || '');
                 return 0;
             });
 
-            // Render
             tbody.innerHTML = '';
             if (filtered.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" class="no-data">No results found.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No records found matching your search.</td></tr>';
                 return;
             }
 
             filtered.forEach(record => {
-                const date = new Date(record.createdAt).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+                const date = new Date(record.createdAt).toLocaleString(undefined, { 
+                    month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+                });
+                
                 const driveStatus = record.syncedToDrive 
-                    ? `<span class="badge success">✓ Synced</span>`
-                    : `<span class="badge pending">Pending</span>`;
+                    ? `<span class="status-tag success"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Synced</span>`
+                    : `<span class="status-tag pending">Pending</span>`;
 
                 const actionBtn = record.syncedToDrive
-                    ? `<a href="${record.driveLink}" target="_blank" class="btn btn-outline">
-                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> View Drive
+                    ? `<a href="${record.driveLink}" target="_blank" class="btn-link">
+                         Open Drive <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                        </a>`
-                    : `<button class="btn" disabled>Pending</button>`;
+                    : `<span style="color: #9CA3AF; font-size: 13px;">Waiting...</span>`;
+
+                const videoEl = record.videoUrl 
+                    ? `<video src="${record.videoUrl}" width="64" height="64"></video>` 
+                    : `<div style="width:64px;height:64px;background:#F3F4F6;border-radius:6px;"></div>`;
 
                 tbody.insertAdjacentHTML('beforeend', `
                     <tr>
+                        <td style="width: 80px;">${videoEl}</td>
                         <td>
-                            <div style="font-weight: 600; color: #111827; margin-bottom: 6px;">${record.name}</div>
-                            <div style="color: #6B7280; font-size: 0.8rem; display: flex; gap: 12px;">
-                                <span>📍 ${record.location}</span>
-                                <span>📞 ${record.mobile}</span>
+                            <div class="farmer-info">
+                                <span class="farmer-name">${record.name}</span>
+                                <div class="farmer-meta">
+                                    <span>${record.location}</span>
+                                    <span>${record.mobile}</span>
+                                </div>
                             </div>
                         </td>
-                        <td>
-                            ${record.videoUrl ? `<video src="${record.videoUrl}" width="80" height="120" controls preload="metadata"></video>` : '<div style="width:80px;height:120px;background:#eee;border-radius:8px;"></div>'}
-                        </td>
-                        <td>${date}</td>
+                        <td><span style="color: #4B5563;">${date}</span></td>
                         <td>${driveStatus}</td>
                         <td>${actionBtn}</td>
                     </tr>
@@ -319,7 +527,7 @@
         }
 
         fetchVideos();
-        setInterval(fetchVideos, 15000); // Refresh every 15s
+        setInterval(fetchVideos, 15000);
     </script>
 </body>
 </html>
