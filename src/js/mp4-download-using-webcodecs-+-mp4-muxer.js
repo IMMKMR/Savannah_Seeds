@@ -145,10 +145,11 @@ window.generateBrandJacketedVideoBlob = async function (progressCallback) {
         let includeAudio = false;
         let audioBuffer = null;
         try {
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            // Use OfflineAudioContext to bypass strict iOS Safari user-gesture requirements for decoding
+            const OfflineCtx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+            const audioCtx = new OfflineCtx(1, 1, 44100); // minimal context just for decoding
             const arrayBuf = await state.recordedBlob.arrayBuffer();
             audioBuffer = await audioCtx.decodeAudioData(arrayBuf);
-            audioCtx.close();
 
             if (typeof AudioEncoder !== 'undefined') {
                 const numberOfChannels = Math.min(audioBuffer.numberOfChannels, 2);

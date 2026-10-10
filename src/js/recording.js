@@ -159,8 +159,10 @@ window.startRecording = function() {
 
 window.getSupportedMimeType = function() {
     const types = [
+        'video/mp4;codecs=avc1,mp4a.40.2', // Best for iOS/Safari
         'video/webm;codecs=vp9,opus',
         'video/webm;codecs=vp8,opus',
+        'video/mp4;codecs=avc1',
         'video/webm;codecs=vp9',
         'video/webm;codecs=vp8',
         'video/webm',
