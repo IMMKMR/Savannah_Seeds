@@ -46,6 +46,23 @@ export default async function handler(req, res) {
 
         // 2. Download from R2
         const fileRes = await fetch(pendingUrl);
+        
+        if (fileRes.status === 404) {
+            console.warn(`File ${pendingUrl} not found in R2. Marking as deleted in Google Sheet.`);
+            await sheets.spreadsheets.values.update({
+                spreadsheetId: process.env.GOOGLE_SHEET_ID,
+                range: `Sheet1!E${pendingRowIndex + 1}`,
+                valueInputOption: 'USER_ENTERED',
+                requestBody: {
+                    values: [['[FILE DELETED FROM R2]']],
+                },
+            });
+            return res.status(200).json({ 
+                success: true, 
+                message: `Skipped missing file ${pendingUrl} and updated sheet.` 
+            });
+        }
+
         if (!fileRes.ok) throw new Error(`Failed to download from R2: ${fileRes.statusText}`);
         
         const contentType = fileRes.headers.get('content-type') || 'video/mp4';
