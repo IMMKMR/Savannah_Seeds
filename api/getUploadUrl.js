@@ -1,4 +1,5 @@
-import { getGoogleAuth } from './_google.js';
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -6,48 +7,35 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { filename, mimeType, fileSize } = req.body || {};
+        const { filename, mimeType } = req.body || {};
 
         if (!filename || !mimeType) {
             return res.status(400).json({ error: 'Missing filename or mimeType' });
         }
 
-        const auth = getGoogleAuth(['https://www.googleapis.com/auth/drive']);
-        const { token } = await auth.getAccessToken();
+        const S3 = new S3Client({
+            region: "auto",
+            endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+            credentials: {
+                accessKeyId: process.env.R2_ACCESS_KEY_ID,
+                secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
+            },
+        });
 
-        // supportsAllDrives=true is required to upload into a Shared Drive folder
-        const response = await fetch(
-            'https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable&supportsAllDrives=true',
-            {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json; charset=UTF-8',
-                    'X-Upload-Content-Type': mimeType,
-                    // Tell Google the total size so it can handle chunked uploads properly
-                    ...(fileSize ? { 'X-Upload-Content-Length': String(fileSize) } : {}),
-                    // Google ties CORS of the resumable session to this Origin,
-                    // so the browser is allowed to PUT the video directly.
-                    ...(req.headers.origin ? { 'Origin': req.headers.origin } : {}),
-                },
-                body: JSON.stringify({
-                    name: filename,
-                    parents: [process.env.GOOGLE_DRIVE_FOLDER_ID],
-                }),
-            }
-        );
+        const command = new PutObjectCommand({
+            Bucket: process.env.R2_BUCKET_NAME || 'covana',
+            Key: filename,
+            ContentType: mimeType,
+        });
 
-        if (!response.ok) {
-            const errText = await response.text();
-            throw new Error(`Drive session failed (${response.status}): ${errText}`);
-        }
+        const uploadUrl = await getSignedUrl(S3, command, { expiresIn: 3600 });
+        
+        // R2_PUBLIC_URL should be your R2.dev URL or custom domain, e.g. https://pub-xyz.r2.dev
+        const publicUrl = process.env.R2_PUBLIC_URL 
+            ? `${process.env.R2_PUBLIC_URL}/${filename}`
+            : `https://YOUR_R2_PUBLIC_URL/${filename}`;
 
-        const uploadUrl = response.headers.get('Location');
-        if (!uploadUrl) {
-            throw new Error('Failed to obtain upload URL from Google Drive');
-        }
-
-        return res.status(200).json({ uploadUrl });
+        return res.status(200).json({ uploadUrl, publicUrl, fileId: filename });
     } catch (error) {
         console.error('Error generating upload URL:', error);
         return res.status(500).json({ error: error.message });

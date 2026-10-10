@@ -300,124 +300,43 @@ window.hideUploadProgress = function(success) {
 // Chunked Resumable Upload to Google Drive
 // ==========================================
 
+// ==========================================
+// Cloudflare R2 Upload
+// ==========================================
+
 /**
- * Upload a single chunk via XHR with progress tracking.
- * Returns a promise that resolves with the XHR response.
+ * Upload file to R2 via pre-signed URL with progress tracking.
  */
-window.uploadChunkXHR = function(url, blob, offset, total, onProgress, timeoutMs) {
+window.uploadToR2XHR = function(url, blob, onProgress, timeoutMs) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
-        const end = offset + blob.size - 1;
         
         xhr.open('PUT', url, true);
-        xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-        xhr.setRequestHeader('Content-Range', `bytes ${offset}-${end}/${total}`);
-        xhr.timeout = timeoutMs || 120000; // 2 min per chunk
+        // S3 pre-signed URLs require the exact Content-Type that was signed
+        xhr.setRequestHeader('Content-Type', blob.type);
+        xhr.timeout = timeoutMs || 300000; // 5 min
         
         xhr.upload.addEventListener('progress', (e) => {
             if (e.lengthComputable && onProgress) {
-                const chunkProgress = e.loaded / e.total;
-                const overallBytes = offset + (blob.size * chunkProgress);
-                const overallPercent = (overallBytes / total) * 100;
-                onProgress(overallPercent);
+                const percent = (e.loaded / e.total) * 100;
+                onProgress(percent);
             }
         });
         
         xhr.addEventListener('load', () => {
             if (xhr.status >= 200 && xhr.status < 400) {
-                resolve({ status: xhr.status, response: xhr.responseText });
+                resolve();
             } else {
-                reject(new Error(`Chunk upload failed: HTTP ${xhr.status} — ${xhr.responseText}`));
+                reject(new Error(`Upload failed: HTTP ${xhr.status} — ${xhr.responseText}`));
             }
         });
         
-        xhr.addEventListener('error', () => reject(new Error('Network error during chunk upload')));
-        xhr.addEventListener('timeout', () => reject(new Error('Chunk upload timed out')));
-        xhr.addEventListener('abort', () => reject(new Error('Chunk upload aborted')));
+        xhr.addEventListener('error', () => reject(new Error('Network error during upload')));
+        xhr.addEventListener('timeout', () => reject(new Error('Upload timed out')));
+        xhr.addEventListener('abort', () => reject(new Error('Upload aborted')));
         
         xhr.send(blob);
     });
-}
-
-/**
- * Upload file to Google Drive using chunked resumable upload.
- * Splits file into 5MB chunks, retries failed chunks, and reports progress.
- */
-window.chunkedResumableUpload = async function(uploadUrl, fileBlob, onProgress) {
-    const CHUNK_SIZE = 5 * 1024 * 1024; // 5 MB
-    const totalSize = fileBlob.size;
-    let offset = 0;
-    
-    // For small files (< 5MB), upload in one shot with XHR for progress
-    if (totalSize <= CHUNK_SIZE) {
-        const result = await window.uploadChunkXHR(
-            uploadUrl, fileBlob, 0, totalSize, onProgress, 120000
-        );
-        return JSON.parse(result.response);
-    }
-    
-    // Chunked upload for larger files
-    while (offset < totalSize) {
-        const chunkEnd = Math.min(offset + CHUNK_SIZE, totalSize);
-        const chunk = fileBlob.slice(offset, chunkEnd);
-        const isLastChunk = chunkEnd >= totalSize;
-        
-        let chunkAttempts = 0;
-        const maxChunkRetries = 3;
-        
-        while (chunkAttempts < maxChunkRetries) {
-            try {
-                const result = await window.uploadChunkXHR(
-                    uploadUrl, chunk, offset, totalSize, onProgress, 120000
-                );
-                
-                if (isLastChunk) {
-                    // Last chunk — Google returns the file metadata
-                    return JSON.parse(result.response);
-                }
-                
-                // Not last chunk — Google returns 308 Resume Incomplete (treated as success range)
-                break; // Move to next chunk
-                
-            } catch (err) {
-                chunkAttempts++;
-                console.warn(`Chunk ${Math.floor(offset/CHUNK_SIZE)+1} attempt ${chunkAttempts} failed:`, err.message);
-                
-                if (chunkAttempts >= maxChunkRetries) {
-                    throw new Error(`Upload failed at ${Math.round((offset/totalSize)*100)}% after ${maxChunkRetries} retries: ${err.message}`);
-                }
-                
-                // Wait before retrying (exponential backoff)
-                await new Promise(r => setTimeout(r, 1000 * chunkAttempts));
-                
-                // Query Google Drive for actual upload position (resume)
-                try {
-                    const resumeRes = await fetch(uploadUrl, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Range': `bytes */${totalSize}`,
-                        },
-                    });
-                    if (resumeRes.status === 308) {
-                        const range = resumeRes.headers.get('Range');
-                        if (range) {
-                            const resumeOffset = parseInt(range.split('-')[1], 10) + 1;
-                            console.log(`Resuming from byte ${resumeOffset}`);
-                            offset = resumeOffset;
-                            // Re-slice the chunk from the new offset
-                            break; // This breaks the retry loop; outer while will re-create the chunk
-                        }
-                    }
-                } catch (resumeErr) {
-                    console.warn('Resume query failed:', resumeErr.message);
-                }
-            }
-        }
-        
-        offset = chunkEnd;
-    }
-    
-    throw new Error('Upload ended without receiving file metadata');
 }
 
 window.uploadToServerOnce = async function() {
@@ -437,7 +356,7 @@ window.uploadToServerOnce = async function() {
     try {
         showUploadProgress(0, 'Preparing upload...');
         
-        console.log('Requesting Google Drive upload URL from Vercel API...');
+        console.log('Requesting R2 upload URL from Vercel API...');
         const urlRes = await fetch('/api/getUploadUrl', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -448,19 +367,17 @@ window.uploadToServerOnce = async function() {
             throw new Error('Failed to get upload URL: ' + await urlRes.text());
         }
         
-        const { uploadUrl } = await urlRes.json();
+        const { uploadUrl, publicUrl } = await urlRes.json();
         
         showUploadProgress(2, 'Uploading video...');
 
-        console.log(`Uploading video (${(blobToUpload.size / 1024 / 1024).toFixed(1)} MB) to Google Drive...`);
+        console.log(`Uploading video (${(blobToUpload.size / 1024 / 1024).toFixed(1)} MB) to Cloudflare R2...`);
         
-        const fileData = await window.chunkedResumableUpload(
+        await window.uploadToR2XHR(
             uploadUrl, 
             blobToUpload,
             (percent) => showUploadProgress(percent * 0.9, `Uploading... ${Math.round(percent)}%`)
         );
-        
-        const fileId = fileData.id;
         
         showUploadProgress(92, 'Saving details...');
 
@@ -472,7 +389,7 @@ window.uploadToServerOnce = async function() {
                 name: user.name || 'Anonymous Farmer', 
                 location: user.location || 'Unknown', 
                 mobile: user.mobile || 'Unknown', 
-                fileId 
+                publicUrl 
             })
         });
 
