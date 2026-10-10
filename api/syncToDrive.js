@@ -74,6 +74,9 @@ export default async function handler(req, res) {
         });
 
         const fileId = driveRes.data.id;
+        if (!fileId) {
+            throw new Error('Upload to Drive failed silently (no fileId returned). Aborting sync.');
+        }
 
         // 4. Make file viewable on Google Drive
         try {
@@ -95,7 +98,7 @@ export default async function handler(req, res) {
         const driveUrl = fileData.data.webViewLink || `https://drive.google.com/file/d/${fileId}/view`;
 
         // 6. Update the specific row in Google Sheet with the new Drive URL
-        await sheets.spreadsheets.values.update({
+        const sheetUpdateRes = await sheets.spreadsheets.values.update({
             spreadsheetId: process.env.GOOGLE_SHEET_ID,
             range: `Sheet1!E${pendingRowIndex + 1}`,
             valueInputOption: 'USER_ENTERED',
@@ -104,7 +107,11 @@ export default async function handler(req, res) {
             },
         });
 
-        // 7. Delete the original file from Cloudflare R2
+        if (sheetUpdateRes.status !== 200) {
+            throw new Error(`Google Sheet update failed with status ${sheetUpdateRes.status}. Aborting R2 deletion to prevent data loss.`);
+        }
+
+        // 7. CRITICAL: Only delete the original file from Cloudflare R2 if ALL steps above succeeded
         const S3 = new S3Client({
             region: "auto",
             endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
