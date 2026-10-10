@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { filename, mimeType } = req.body || {};
+        const { filename, mimeType, fileSize } = req.body || {};
 
         if (!filename || !mimeType) {
             return res.status(400).json({ error: 'Missing filename or mimeType' });
@@ -24,6 +24,8 @@ export default async function handler(req, res) {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json; charset=UTF-8',
                     'X-Upload-Content-Type': mimeType,
+                    // Tell Google the total size so it can handle chunked uploads properly
+                    ...(fileSize ? { 'X-Upload-Content-Length': String(fileSize) } : {}),
                     // Google ties CORS of the resumable session to this Origin,
                     // so the browser is allowed to PUT the video directly.
                     ...(req.headers.origin ? { 'Origin': req.headers.origin } : {}),

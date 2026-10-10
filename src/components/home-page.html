@@ -107,7 +107,9 @@
                     <h2 class="home-cta-text green-text" data-i18n="videoTutorial">How to Record Video</h2>
                     <!-- Video Tutorial Box -->
                     <div class="home-video-box" id="home-video-tutorial">
-                        <video id="tutorial-player" class="tutorial-video-element" src="assets/banner_video.mp4" playsinline preload="metadata"></video>
+                        <video id="tutorial-player" class="tutorial-video-element" playsinline preload="none" poster="assets/banner.png">
+                            <source src="assets/banner_video.mp4" type="video/mp4">
+                        </video>
                         <div class="video-box-overlay" id="tutorial-overlay">
                             <div class="video-play-btn-circle">
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
